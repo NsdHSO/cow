@@ -1,0 +1,15 @@
+{
+  "name": "cow-meat",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^14.0.0",
+    "@angular/core": "^14.0.0"
+  },
+  "dependencies": {
+    "ng2-charts": "^4.0.1",
+    "ngx-driver": "2.0.3",
+    "ngx-liburg": "0.0.16",
+    "ngx-liburg-icon": "^0.0.17",
+    "tslib": "^2.3.0"
+  }
+}
