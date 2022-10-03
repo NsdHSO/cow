@@ -20,7 +20,9 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "angular-csv-ext": "^1.0.5",
     "chart.js": "^3.9.1",
+    "file-saver": "^2.0.5",
     "ng2-charts": "^3.0.0",
     "ngx-driver": "2.0.3",
     "ngx-liburg": "0.0.17",
@@ -41,8 +43,8 @@
     "karma-jasmine": "~5.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "ng-packagr": "^14.0.0",
-    "typescript": "~4.7.2",
     "ngx-driver": "2.0.3",
-    "ngx-liburg-icon": "^0.0.20"
+    "ngx-liburg-icon": "^0.0.20",
+    "typescript": "~4.7.2"
   }
 }

@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {DataSourceMaterialTable, IActionMaterialColumn} from "ngx-liburg";
 import {SpinnerService} from "ngx-liburg-icon";
 import {BehaviorSubject} from "rxjs";
+import {ReportingService} from "./utils";
 import {IMilkCow} from "./utils/interface/i-milk-cow";
 
 @Component({
@@ -18,7 +19,8 @@ export class ReportingComponent implements OnInit {
 
   constructor(
     private readonly _activateRouter : ActivatedRoute,
-    private readonly _spinerStateSerice : SpinnerService) { }
+    private readonly _spinerStateSerice : SpinnerService,
+    private readonly _reportingService : ReportingService) { }
 
   ngOnInit() : void {
     this.dataSourceMilkCow = this._activateRouter.snapshot.data["allData"].map((cowMilk : IMilkCow) => {
@@ -30,10 +32,14 @@ export class ReportingComponent implements OnInit {
         model   : {
           ...model,
           insemination: model.numberIn.insemination,
-          lact: model.numberIn.lact
+          lact        : model.numberIn.lact,
         },
       } as DataSourceMaterialTable<any>;
     });
+  }
+
+  public download() : void {
+    this._reportingService.getCsv(10, 0);
   }
 
   private _actionTableListCow() : IActionMaterialColumn[] {
