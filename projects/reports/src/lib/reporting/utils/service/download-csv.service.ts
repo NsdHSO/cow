@@ -12,7 +12,7 @@ export class DownloadCsvService {
     let fullDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}-${time}`;
     var options  = {
       noDownload: false,
-      headers   : Object.keys(clone[0]),
+      headers   : Object.keys(clone.items[0]),
     };
     new AngularCsv(data, `milk_reporting_${fullDate}`, options);
   }

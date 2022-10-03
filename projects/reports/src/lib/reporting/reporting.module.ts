@@ -6,14 +6,18 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {TableMaterialModule} from "ngx-liburg";
 import {SpinnerModule} from "ngx-liburg-icon";
+import {
+  HeaderDropDownDownloadComponent,
+} from "./components/header-drop-down-download/header-drop-down-download.component";
 import {ReportingRoutingModule} from "./reporting-routing.module";
 import {ReportingComponent} from "./reporting.component";
 
 @NgModule({
             declarations: [
               ReportingComponent,
+              HeaderDropDownDownloadComponent,
             ],
-            imports: [
+            imports     : [
               CommonModule,
               ReportingRoutingModule,
               TableMaterialModule,

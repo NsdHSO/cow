@@ -1,22 +1,6 @@
 <div class="cow-table-wrapper"
      *ngIf="dataSourceMilkCow.length > 0; else spinner">
-  <div class="cow-table-wrapper__header">
-    <div class="cow-table-wrapper__header__selection">
-      <select class="cow-table-wrapper__header__selection__select">
-        <option [ngValue]="null"
-                disabled>Select Country
-        </option>
-        <option *ngFor="let country of ['Ion', 'asdasd']"
-                [ngValue]="country">{{country}}</option>
-      </select>
-    </div>
-    <div class="cow-table-wrapper__export">
-      <button mat-raised-button
-              (click)="download()"
-      >Download csv
-      </button>
-    </div>
-  </div>
+  <lib-header-drop-down-download (onDownload)="download()"></lib-header-drop-down-download>
   <elix-table
     [dataSource]="dataSourceMilkCow"
     [showPagination]="true"

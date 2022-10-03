@@ -1,0 +1,19 @@
+<div class="cow-table-wrapper">
+  <div class="cow-table-wrapper__header">
+    <div class="cow-table-wrapper__header__selection">
+      <select class="cow-table-wrapper__header__selection__select">
+        <option [ngValue]="null"
+                disabled>Select Country
+        </option>
+        <option *ngFor="let country of ['Ion', 'asdasd']"
+                [ngValue]="country">{{country}}</option>
+      </select>
+    </div>
+    <div class="cow-table-wrapper__export">
+      <button mat-raised-button
+              (click)="actionDownload()"
+      >Download csv
+      </button>
+    </div>
+  </div>
+</div>
