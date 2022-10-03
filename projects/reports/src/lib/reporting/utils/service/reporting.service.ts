@@ -1,88 +1,51 @@
 import {HttpClient} from "@angular/common/http";
 import {Inject, Injectable} from "@angular/core";
-import {Observable} from "rxjs";
+import {Subject} from "rxjs";
 import {IMilkCow} from "../interface/i-milk-cow";
-
-const csvData = [
-  ["id", "name", "message"],
-  {
-    id     : 1,
-    name   : "Mandy",
-    message: "hello\nworld",
-  },
-  {
-    id     : 2,
-    name   : "Mars",
-    message: "hello Angular",
-  },
-];
+import {DownloadCsvService} from "./download-csv.service";
 
 @Injectable({
               providedIn: "root",
             })
 export class ReportingService {
-  constructor(private readonly _httpClient : HttpClient, @Inject("env") private environment : any) { }
+  public getData : Subject<IMilkCow[]> = new Subject<IMilkCow[]>();
+  private _item                        = 10;
+  private _page                        = 0;
 
-  public getDataForReporting(item : number, page : number) : Observable<IMilkCow> {
-    return this._httpClient.get<IMilkCow>(`${this.environment.api}/cow/milk/${item}/${page}`);
+  public get item() : number {
+    return this._item;
   }
+
+  public set item(value : number) {
+    this._item = value;
+  }
+
+  public get page() : number {
+    return this._page;
+  }
+
+  public set page(value : number) {
+    this._page = value;
+  }
+
+  constructor(private readonly _httpClient : HttpClient, @Inject("env") private environment : any) { }
 
   public getCsv(items : number, page : number) {
     const pathCsv  = "searchResults/project_" + "/OutputsCsv/";
     const fileName = "project_" + "_output_datas.csv";
     const fullPath = pathCsv + fileName;
-    this._httpClient.get(`${this.environment.api}/cow/milk/${items}/${page}`)
+    this._httpClient.get(`${this.environment.api}/cow/milk/${this._item ?? 10}/${this._page ?? 0}`)
       .subscribe(resp => {
-        this.download(resp);
+        DownloadCsvService.download(resp as any[]);
       });
   }
 
-  download(csvData : any) {
-    const newData = csvData.filter((e : any, i : any) => i !== 0)
-      .map((e: any) => {
-        return Object.keys(e)
-          .reduce((acc, curr : string) => {
-            debugger
-            // @ts-ignore
-            return {...acc, ...{[curr]: "\"" + e[curr] + "\""}};
-          }, {});
+  public getDataForReporting(item : number, page : number) : void {
+    this._item = item;
+    this._page = page;
+    this._httpClient.get<IMilkCow[]>(`${this.environment.api}/cow/milk/${item}/${page}`)
+      .subscribe(cows => {
+        this.getData.next(cows);
       });
-    console.log("newdata", csvData, [csvData["0"], ...newData]);
-    this.exportFile(newData);
-  }
-
-  exportFile(rows : any, fileTitle? : any) {
-    const jsonObject = JSON.stringify(rows);
-    const csv        = "\ufeff" + this.convertToCSV(jsonObject); // support Chinese
-    const blob       = new Blob([csv], {type: "text/csv;charset=utf-8;"});
-    const link       = document.createElement("a");
-    const url        = URL.createObjectURL(blob);
-    link.setAttribute("href", url);
-    link.setAttribute("download", fileTitle || "data.csv");
-    link.style.visibility = "hidden";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
-
-  /* CSV: convert json to json */
-  convertToCSV(objArray : any) : string {
-    const array =
-            typeof objArray !== "object"
-              ? JSON.parse(objArray)
-              : objArray;
-    let str     = "";
-    for(let i = 0 ; i < array.length ; i++) {
-      let line = "";
-      Object.entries(array[i])
-        .forEach(([key, value]) => {
-          if(line !== "") {
-            line += ",";
-          }
-          line += value;
-        });
-      str += line + "\r\n";
-    }
-    return str;
   }
 }

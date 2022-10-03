@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {PageEvent} from "@angular/material/paginator";
 import {ActivatedRoute} from "@angular/router";
 import {DataSourceMaterialTable, IActionMaterialColumn} from "ngx-liburg";
 import {SpinnerService} from "ngx-liburg-icon";
@@ -13,9 +14,10 @@ import {IMilkCow} from "./utils/interface/i-milk-cow";
            })
 export class ReportingComponent implements OnInit {
   public dataSourceMilkCow : IMilkCow[] | any;
-
   public isLoading : BehaviorSubject<boolean> | undefined = new BehaviorSubject<boolean>(
     true);
+  public allItem                                          = 0;
+  public selected = " ";
 
   constructor(
     private readonly _activateRouter : ActivatedRoute,
@@ -23,19 +25,29 @@ export class ReportingComponent implements OnInit {
     private readonly _reportingService : ReportingService) { }
 
   ngOnInit() : void {
-    this.dataSourceMilkCow = this._activateRouter.snapshot.data["allData"].map((cowMilk : IMilkCow) => {
-      this._spinerStateSerice.sendValue(true);
-      const model = <IMilkCow> cowMilk;
-      return {
-        actions : this._actionTableListCow(),
-        editable: false,
-        model   : {
-          ...model,
-          insemination: model.numberIn.insemination,
-          lact        : model.numberIn.lact,
-        },
-      } as DataSourceMaterialTable<any>;
+    this._reportingService.getData.subscribe((cows : any) => {
+      this.allItem           = cows.allItems;
+      this.dataSourceMilkCow = cows.items.map((cowMilk : IMilkCow) => {
+        this._spinerStateSerice.sendValue(true);
+        const model = <IMilkCow> cowMilk;
+        return {
+          actions : this._actionTableListCow(),
+          editable: false,
+          model   : {
+            ...model,
+            insemination: model.numberIn.insemination,
+            lact        : model.numberIn.lact,
+          },
+        } as DataSourceMaterialTable<any>;
+      });
     });
+  }
+
+  public changePage(event : PageEvent) : void {
+    this._reportingService.getDataForReporting(
+      event.pageSize,
+      event.pageIndex,
+    );
   }
 
   public download() : void {
