@@ -5,8 +5,8 @@
         <option [ngValue]="null"
                 disabled>Select Country
         </option>
-        <option *ngFor="let country of ['Ion', 'asdasd']"
-                [ngValue]="country">{{country}}</option>
+        <option *ngFor="let report of options"
+                [ngValue]="report.value">{{report.viewValue}}</option>
       </select>
     </div>
     <div class="cow-table-wrapper__export">

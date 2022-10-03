@@ -6,6 +6,7 @@ import {SpinnerService} from "ngx-liburg-icon";
 import {BehaviorSubject} from "rxjs";
 import {ReportingService} from "./utils";
 import {IMilkCow} from "./utils/interface/i-milk-cow";
+import {ISelectionState} from "./utils/interface/ISelection-state";
 
 @Component({
              selector   : "lib-reporting",
@@ -17,16 +18,19 @@ export class ReportingComponent implements OnInit {
   public isLoading : BehaviorSubject<boolean> | undefined = new BehaviorSubject<boolean>(
     true);
   public allItem                                          = 0;
-  public selected = " ";
+  public selections : ISelectionState[];
 
   constructor(
     private readonly _activateRouter : ActivatedRoute,
     private readonly _spinerStateSerice : SpinnerService,
-    private readonly _reportingService : ReportingService) { }
+    private readonly _reportingService : ReportingService) {
+    this.selections = [] as ISelectionState[];
+  }
 
   ngOnInit() : void {
     this._reportingService.getData.subscribe((cows : any) => {
       this.allItem           = cows.allItems;
+      this.selections        = cows.report;
       this.dataSourceMilkCow = cows.items.map((cowMilk : IMilkCow) => {
         this._spinerStateSerice.sendValue(true);
         const model = <IMilkCow> cowMilk;

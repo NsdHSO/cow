@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Output} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {ISelectionState} from "../../utils/interface/ISelection-state";
 
 @Component({
              selector   : "lib-header-drop-down-download",
@@ -7,7 +8,9 @@ import {Component, EventEmitter, Output} from "@angular/core";
            })
 export class HeaderDropDownDownloadComponent {
   @Output()
-  onDownload : EventEmitter<any> = new EventEmitter<any>();
+  onDownload : EventEmitter<any>     = new EventEmitter<any>();
+  @Input()
+  public options : ISelectionState[] = [] as ISelectionState[];
 
   public actionDownload() {
     this.onDownload.next({});
