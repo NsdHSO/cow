@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: "https://exteotera.heroku.com/cow/meat"
+  api: "https://exteotera.heroku.com"
 };

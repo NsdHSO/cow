@@ -1,0 +1,66 @@
+<div class="cow-table-wrapper">
+  <elix-table
+    [dataSource]="dataSourceMilkCow"
+    [showPagination]="true"
+    [lenghtPagination]="dataSourceMilkCow.length"
+  >
+    <elix-column-text
+      className="number"
+      [editRow]="true"
+      field="numberFromEar"
+      name="Number Cow"
+    ></elix-column-text>
+    <elix-column-text
+      className="state"
+      field="state"
+      name="State"
+    ></elix-column-text>
+    <elix-column-text
+      className="group"
+      field="group"
+      name="Group"
+    ></elix-column-text>
+    <elix-column-text
+      className="status-gynecologic"
+      field="gynecologicalStatus"
+      name="Status Gynecologic"
+    ></elix-column-text>
+    <elix-column-text
+      className="number-in_lact"
+      field="lact"
+      name="Number"
+    ></elix-column-text>
+    <elix-column-text
+      className="number-in_insem"
+      field="insemination"
+      name="Insemination"
+    ></elix-column-text>
+    <elix-column-text
+      className="age"
+      field="age"
+      name="Age"
+    ></elix-column-text>
+    <elix-column-text
+      className="average-of-milk"
+      field="averageOfMilk"
+      name="Average Of Milk"
+    ></elix-column-text>
+    <elix-column-text
+      className="birth"
+      field="birth"
+      name="Birth"
+    ></elix-column-text>
+    <elix-column-text
+      className="how-much-eats"
+      [editRow]="true"
+      field="howMuchEats"
+      name="How Eats"
+    ></elix-column-text>
+    <elix-column-icon-action
+      className="action"
+      name="ACTION FIELD"
+      field="action"
+    ></elix-column-icon-action>
+  </elix-table>
+</div>
+

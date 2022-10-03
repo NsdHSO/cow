@@ -6,6 +6,9 @@
     "paths": {
       "cow-meat": [
         "dist/cow-meat"
+      ],
+      "reports": [
+        "dist/reports"
       ]
     },
     "outDir": "./dist/out-tsc",
