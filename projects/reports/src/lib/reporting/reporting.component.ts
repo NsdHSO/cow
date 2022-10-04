@@ -18,19 +18,22 @@ export class ReportingComponent implements OnInit {
   public isLoading : BehaviorSubject<boolean> | undefined = new BehaviorSubject<boolean>(
     true);
   public allItem                                          = 0;
-  public selections : ISelectionState[];
+  public selectionsReport : ISelectionState[];
+  public selectionsGraph : ISelectionState[];
 
   constructor(
     private readonly _activateRouter : ActivatedRoute,
     private readonly _spinerStateSerice : SpinnerService,
     private readonly _reportingService : ReportingService) {
-    this.selections = [] as ISelectionState[];
+    this.selectionsReport = [] as ISelectionState[];
+    this.selectionsGraph  = [] as ISelectionState[];
   }
 
   ngOnInit() : void {
     this._reportingService.getData.subscribe((cows : any) => {
       this.allItem           = cows.allItems;
-      this.selections        = cows.report;
+      this.selectionsReport  = cows.report;
+      this.selectionsGraph   = cows.graph;
       this.dataSourceMilkCow = cows.items.map((cowMilk : IMilkCow) => {
         this._spinerStateSerice.sendValue(true);
         const model = <IMilkCow> cowMilk;

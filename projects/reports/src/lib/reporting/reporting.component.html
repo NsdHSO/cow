@@ -1,6 +1,6 @@
 <div class="cow-table-wrapper"
      *ngIf="dataSourceMilkCow.length > 0; else spinner">
-  <lib-header-drop-down-download (onDownload)="download()" [options]="selections"></lib-header-drop-down-download>
+  <lib-header-drop-down-download (onDownload)="download()" [optionsReport]="selectionsReport" [optionGraph] = "selectionsGraph"></lib-header-drop-down-download>
   <elix-table
     [dataSource]="dataSourceMilkCow"
     [showPagination]="true"

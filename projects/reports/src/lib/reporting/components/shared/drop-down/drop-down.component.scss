@@ -1,0 +1,20 @@
+:host {
+  margin: 1rem;
+  display: flex;
+}
+
+.drop-down {
+
+  &__selection {
+    display: flex;
+    align-items: center;
+
+    &__select {
+      background: #FCFDFD;
+      border: 0.6px solid #D5D5D5;
+      border-radius: 4px;
+      outline: aquamarine;
+      justify-content: flex-start;
+    }
+  }
+}

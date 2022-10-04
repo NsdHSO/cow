@@ -1,0 +1,13 @@
+<div class="drop-down__selection">
+  <select class="drop-down__selection__select"
+          [(ngModel)]="selectText"
+          (change)="select()"
+  >
+    <option [ngValue]="null"
+            disabled>{{disabledText}}
+    </option>
+    <option *ngFor="let report of options"
+            [ngValue]="report.viewValue"
+    >{{report.viewValue}}</option>
+  </select>
+</div>

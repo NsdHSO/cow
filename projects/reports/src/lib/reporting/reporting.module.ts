@@ -9,6 +9,7 @@ import {SpinnerModule} from "ngx-liburg-icon";
 import {
   HeaderDropDownDownloadComponent,
 } from "./components/header-drop-down-download/header-drop-down-download.component";
+import {SharedModule} from "./components/shared/shared.module";
 import {ReportingRoutingModule} from "./reporting-routing.module";
 import {ReportingComponent} from "./reporting.component";
 
@@ -17,7 +18,7 @@ import {ReportingComponent} from "./reporting.component";
               ReportingComponent,
               HeaderDropDownDownloadComponent,
             ],
-            imports     : [
+            imports: [
               CommonModule,
               ReportingRoutingModule,
               TableMaterialModule,
@@ -26,6 +27,7 @@ import {ReportingComponent} from "./reporting.component";
               MatFormFieldModule,
               MatSelectModule,
               FormsModule,
+              SharedModule,
             ],
           })
 export class ReportingModule {}

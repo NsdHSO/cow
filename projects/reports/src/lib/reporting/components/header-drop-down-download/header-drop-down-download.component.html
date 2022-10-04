@@ -1,13 +1,22 @@
 <div class="cow-table-wrapper">
   <div class="cow-table-wrapper__header">
-    <div class="cow-table-wrapper__header__selection">
-      <select class="cow-table-wrapper__header__selection__select">
-        <option [ngValue]="null"
-                disabled>Select Country
-        </option>
-        <option *ngFor="let report of options"
-                [ngValue]="report.value">{{report.viewValue}}</option>
-      </select>
+    <div class="cow-table-wrapper__header__select">
+      <div>
+        <lib-drop-down [options]="optionsReport"
+                       [disabledText]="'Select report'"
+                       (selectOption)="selectReport($event)"></lib-drop-down>
+      </div>
+      <div class="cow-table-wrapper__header__select__graph">
+        <div>
+          Select graph
+        </div>
+        <div>
+          <lib-drop-down [options]="optionGraph"
+                         [disabledText]="'Select Graph'"
+                         (selectOption)="selectGraph($event)"
+          ></lib-drop-down>
+        </div>
+      </div>
     </div>
     <div class="cow-table-wrapper__export">
       <button mat-raised-button

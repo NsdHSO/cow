@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="container__header">
+    <p>Add new To-Do</p>
+    <button mat-flat-button>Save</button>
+  </div>
+  <div>
+    <lib-card-todo [isNew]="true"></lib-card-todo>
+  <lib-card-todo *ngFor="let todo of todos" [ranting]="todo.ranting" [checked]="todo.check" [description]="todo.description"></lib-card-todo>
+  </div>
+</div>

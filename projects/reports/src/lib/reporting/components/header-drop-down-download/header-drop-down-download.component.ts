@@ -8,11 +8,21 @@ import {ISelectionState} from "../../utils/interface/ISelection-state";
            })
 export class HeaderDropDownDownloadComponent {
   @Output()
-  onDownload : EventEmitter<any>     = new EventEmitter<any>();
+  onDownload : EventEmitter<any>           = new EventEmitter<any>();
   @Input()
-  public options : ISelectionState[] = [] as ISelectionState[];
+  public optionsReport : ISelectionState[] = [] as ISelectionState[];
+  @Input()
+  public optionGraph : ISelectionState[]   = [] as ISelectionState[];
 
   public actionDownload() {
     this.onDownload.next({});
+  }
+
+  public selectReport(event: string){
+    console.log(event)
+  }
+
+  public selectGraph(event: string){
+    console.log(event)
   }
 }

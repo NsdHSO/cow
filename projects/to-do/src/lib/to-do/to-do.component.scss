@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    padding: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    p {
+      font-size: 25px;
+      margin: 0;
+    }
+
+    button {
+      font-size: 18px;
+
+      ::ng-deep {
+        .mat-button-wrapper {
+          padding: 2rem;
+        }
+      }
+    }
+  }
+}
