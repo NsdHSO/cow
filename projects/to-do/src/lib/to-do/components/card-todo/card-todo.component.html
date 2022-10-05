@@ -1,11 +1,13 @@
-<mat-card class="container">
+<mat-card class="container mat-elevation-z9" >
   <div class="container__wrapper">
     <input class="container__wrapper__input"
            placeholder="Write your task name here"
+           [(ngModel)]="description"
+          (ngModelChange)="setDescription()"
            *ngIf="isNew">
     <div *ngIf="!isNew"
          class="container__wrapper__message">
-      <section class="container__wrapper__check">
+      <section class="container__wrapper__check" (click)="makeEvent({check: !checked, id})">
         <mat-checkbox class="example-margin"
                       [(ngModel)]="checked"></mat-checkbox>
       </section>
@@ -14,17 +16,25 @@
           {{description}}
         </div>
         <div class="container__wrapper__message__description__action">
-          <button mat-flat-button>
-            <mat-icon *ngIf="ranting"
+          <button mat-flat-button
+                  *ngIf="ranting"
+                  (click)="makeEvent({rating: true, id})">
+            <mat-icon
               [svgIcon]="'fa_solid:star'"
-              class="new-entry"
-            ></mat-icon>
-            <mat-icon *ngIf="!ranting"
-                      [svgIcon]="'fa_regular:star'"
-                      class="new-entry"
+              class="container__wrapper__message__description__action__ranting-up"
             ></mat-icon>
           </button>
-          <button mat-flat-button>
+          <button mat-flat-button
+                  (click)="makeEvent({rating: false, id})"
+                  *ngIf="!ranting">
+            <mat-icon
+              [svgIcon]="'fa_regular:star'"
+              class="new-entry"
+            ></mat-icon>
+          </button>
+          <button mat-flat-button
+                  (click)="makeEvent({delete: true, id})"
+          >
             <mat-icon
               [svgIcon]="'fa_solid:circle-xmark'"
               class="new-entry"

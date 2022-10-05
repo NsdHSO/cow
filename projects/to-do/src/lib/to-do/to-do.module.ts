@@ -1,3 +1,4 @@
+import {DragDropModule} from "@angular/cdk/drag-drop";
 import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
@@ -22,6 +23,7 @@ import {ToDoComponent} from "./to-do.component";
               MatCheckboxModule,
               FormsModule,
               MatIconModule,
+              DragDropModule,
             ],
           })
 export class ToDoModule {}

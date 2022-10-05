@@ -9,6 +9,9 @@
       ],
       "reports": [
         "dist/reports"
+      ],
+      "toDo": [
+        "dist/to-do"
       ]
     },
     "outDir": "./dist/out-tsc",

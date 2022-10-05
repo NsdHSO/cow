@@ -1,6 +1,6 @@
 {
-  "name": "to-do",
-  "version": "0.0.1",
+  "name": "ngx-to-do",
+  "version": "0.0.3",
   "peerDependencies": {
     "@angular/common": "^14.0.0",
     "@angular/core": "^14.0.0"

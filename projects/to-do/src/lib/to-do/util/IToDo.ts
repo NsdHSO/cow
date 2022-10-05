@@ -2,5 +2,5 @@ export interface IToDo{
   id:number
   check: boolean
   description: string
-  ranting: boolean
+  rating: boolean
 }

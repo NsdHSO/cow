@@ -49,6 +49,16 @@
           display: flex;
           justify-content: space-between;
           padding-right: 2rem;
+
+          &__ranting{
+            &-up{
+              ::ng-deep{
+                svg{
+                  fill: #ede702;
+                }
+              }
+            }
+          }
         }
       }
     }

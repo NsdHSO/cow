@@ -1,10 +1,10 @@
-import {NgModule} from '@angular/core';
-import {CoreCowModule} from 'projects/cow-meat/src/lib/cow-meat/core-cow.module';
+import {NgModule} from "@angular/core";
+import {CoreToDogModule} from "../../../projects/to-do/src/lib/to-do/core-to-do.module";
 
 @NgModule({
             declarations: [],
             imports     : [
-              CoreCowModule.forRoot(),
+              CoreToDogModule.forRoot(),
             ],
           })
-export class NgxCowModule {}
+export class NgxToDoModule {}
