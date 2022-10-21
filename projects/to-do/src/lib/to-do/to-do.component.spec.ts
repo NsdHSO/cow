@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+} from "@angular/core/testing";
+import {ToDoComponent} from "./to-do.component";
 
-import { ToDoComponent } from './to-do.component';
-
-describe('ToDoComponent', () => {
-  let component: ToDoComponent;
-  let fixture: ComponentFixture<ToDoComponent>;
-
+describe("ToDoComponent", () => {
+  let component : ToDoComponent;
+  let fixture : ComponentFixture<ToDoComponent>;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ToDoComponent ]
+      declarations: [ToDoComponent],
     })
-    .compileComponents();
-
+      .compileComponents();
     fixture = TestBed.createComponent(ToDoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it("should create", () => {
+    expect(component)
+      .toBeTruthy();
   });
 });

@@ -1,39 +1,40 @@
-<mat-card class="container mat-elevation-z9" >
+<mat-card class="container mat-elevation-z9">
   <div class="container__wrapper">
-    <input class="container__wrapper__input"
-           placeholder="Write your task name here"
+    <input (ngModelChange)="setDescription()"
+           *ngIf="isNew"
            [(ngModel)]="description"
-          (ngModelChange)="setDescription()"
-           *ngIf="isNew">
+           class="container__wrapper__input"
+           placeholder="Write your task name here">
     <div *ngIf="!isNew"
          class="container__wrapper__message">
-      <section class="container__wrapper__check" (click)="makeEvent({check: !checked, id})">
-        <mat-checkbox class="example-margin"
-                      [(ngModel)]="checked"></mat-checkbox>
+      <section (click)="makeEvent({check: !checked, id})"
+               class="container__wrapper__check">
+        <mat-checkbox [(ngModel)]="checked"
+                      class="example-margin"></mat-checkbox>
       </section>
       <div class="container__wrapper__message__description">
         <div class="container__wrapper__message__description__data">
           {{description}}
         </div>
         <div class="container__wrapper__message__description__action">
-          <button mat-flat-button
+          <button (click)="makeEvent({rating: true, id})"
                   *ngIf="ranting"
-                  (click)="makeEvent({rating: true, id})">
+                  mat-flat-button>
             <mat-icon
               [svgIcon]="'fa_solid:star'"
               class="container__wrapper__message__description__action__ranting-up"
             ></mat-icon>
           </button>
-          <button mat-flat-button
-                  (click)="makeEvent({rating: false, id})"
-                  *ngIf="!ranting">
+          <button (click)="makeEvent({rating: false, id})"
+                  *ngIf="!ranting"
+                  mat-flat-button>
             <mat-icon
               [svgIcon]="'fa_regular:star'"
               class="new-entry"
             ></mat-icon>
           </button>
-          <button mat-flat-button
-                  (click)="makeEvent({delete: true, id})"
+          <button (click)="makeEvent({delete: true, id})"
+                  mat-flat-button
           >
             <mat-icon
               [svgIcon]="'fa_solid:circle-xmark'"

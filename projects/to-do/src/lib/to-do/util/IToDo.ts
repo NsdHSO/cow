@@ -1,6 +1,6 @@
-export interface IToDo{
-  id:number
-  check: boolean
-  description: string
-  rating: boolean
+export interface IToDo {
+  id : number;
+  check : boolean;
+  description : string;
+  rating : boolean;
 }

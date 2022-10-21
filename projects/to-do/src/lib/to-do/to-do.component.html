@@ -1,22 +1,24 @@
 <div class="container">
   <div class="container__header">
     <p>Add new To-Do</p>
-    <button mat-flat-button
-            (click)="saveToDo()">Save
+    <button (click)="saveToDo()"
+            mat-flat-button>Save
     </button>
   </div>
   <div>
-    <lib-card-todo [isNew]="true"
+    <lib-card-todo (descriptionNewEvent)="setDescription($event)"
                    [description]="description"
-                   (descriptionNewEvent)="setDescription($event)"></lib-card-todo>
-    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-      <lib-card-todo *ngFor="let todo of todos"
-                     cdkDrag
-                     [ranting]="todo.rating"
+                   [isNew]="true"></lib-card-todo>
+    <div (cdkDropListDropped)="drop($event)"
+         cdkDropList
+         class="example-list">
+      <lib-card-todo (actionEvent)="action($event)"
+                     *ngFor="let todo of todos"
                      [checked]="todo.check"
                      [description]="todo.description"
                      [id]="todo.id"
-                     (actionEvent)="action($event)"></lib-card-todo>
+                     [ranting]="todo.rating"
+                     cdkDrag></lib-card-todo>
     </div>
   </div>
 </div>

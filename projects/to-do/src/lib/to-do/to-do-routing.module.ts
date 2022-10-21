@@ -1,21 +1,24 @@
 import {NgModule} from "@angular/core";
-import {RouterModule, Routes} from "@angular/router";
+import {
+  RouterModule,
+  Routes,
+} from "@angular/router";
 import {ToDoComponent} from "./to-do.component";
 import {GetAllToDoResolver} from "./util/get-all-to-do.resolver";
 
 const routes : Routes = [
   {
-    path     : "",
+    path: "",
     component: ToDoComponent,
-    resolve  : {
+    resolve: {
       data: GetAllToDoResolver,
     },
   },
 ];
 
 @NgModule({
-            imports: [
-              RouterModule.forChild(routes),
-            ],
-          })
+  imports: [
+    RouterModule.forChild(routes),
+  ],
+})
 export class ToDoRoutingModule {}

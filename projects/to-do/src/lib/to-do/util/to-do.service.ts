@@ -1,14 +1,17 @@
 import {HttpClient} from "@angular/common/http";
-import {Inject, Injectable} from "@angular/core";
+import {
+  Inject,
+  Injectable,
+} from "@angular/core";
 import {Subject} from "rxjs";
 import {IToDo} from "./IToDo";
 
 @Injectable({
-              providedIn: "root",
-            })
+  providedIn: "root",
+})
 export class ToDoService {
   public allTodos : Subject<IToDo[]> = new Subject<IToDo[]>();
-  private _description               = "";
+  private _description = "";
   public get description() : string {
     return this._description;
   }
@@ -17,7 +20,8 @@ export class ToDoService {
     this._description = value;
   }
 
-  public constructor(private readonly _httpClient : HttpClient, @Inject("env") private environment : any) { }
+  public constructor(private readonly _httpClient : HttpClient, @Inject(
+    "env") private environment : any) { }
 
   public getAllDate() {
     this._httpClient.get<IToDo[]>(`${this.environment.api}/to-do`)
@@ -25,9 +29,9 @@ export class ToDoService {
   }
 
   public makeAction(data : any) {
-    let updateKeyObject     = Object.keys(data)[0];
-    let updateValueObject   = Object.values(data)[0];
-    let a                   = {};
+    let updateKeyObject = Object.keys(data)[0];
+    let updateValueObject = Object.values(data)[0];
+    let a = {};
     // @ts-ignore
     a[`${updateKeyObject}`] = updateValueObject;
     this._httpClient.patch(`${this.environment.api}/to-do/${data.id}`, a)
@@ -35,9 +39,9 @@ export class ToDoService {
   }
 
   public makeDeletion(data : any) {
-    let updateKeyObject     = Object.keys(data)[0];
-    let updateValueObject   = Object.values(data)[0];
-    let a                   = {};
+    let updateKeyObject = Object.keys(data)[0];
+    let updateValueObject = Object.values(data)[0];
+    let a = {};
     // @ts-ignore
     a[`${updateKeyObject}`] = updateValueObject;
     this._httpClient.delete(`${this.environment.api}/to-do/${data.id}`)

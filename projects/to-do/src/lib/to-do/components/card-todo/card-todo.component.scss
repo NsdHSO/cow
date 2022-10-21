@@ -1,6 +1,6 @@
 
-:host{
- margin: 1rem 0;
+:host {
+  margin: 1rem 0;
 }
 
 .container {
@@ -41,19 +41,21 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 1rem;
-        &__data{
+
+        &__data {
           font-size: 17px;
         }
+
         &__action {
           width: 6rem;
           display: flex;
           justify-content: space-between;
           padding-right: 2rem;
 
-          &__ranting{
-            &-up{
-              ::ng-deep{
-                svg{
+          &__ranting {
+            &-up {
+              ::ng-deep {
+                svg {
                   fill: #ede702;
                 }
               }

@@ -1,23 +1,28 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from "@angular/core";
 
 @Component({
-             selector   : "lib-card-todo",
-             templateUrl: "./card-todo.component.html",
-             styleUrls  : ["./card-todo.component.scss"],
-           })
+  selector: "lib-card-todo",
+  templateUrl: "./card-todo.component.html",
+  styleUrls: ["./card-todo.component.scss"],
+})
 export class CardTodoComponent {
   @Input()
-  public isNew                            = false;
+  public isNew = false;
   @Input()
-  public ranting                          = false;
+  public ranting = false;
   @Input()
-  public checked                          = false;
+  public checked = false;
   @Input()
-  public description                      = "asdasdasd";
+  public description = "asdasdasd";
   @Input()
-  public id                               = 0;
+  public id = 0;
   @Output()
-  actionEvent : EventEmitter<any>         = new EventEmitter<any>();
+  actionEvent : EventEmitter<any> = new EventEmitter<any>();
   @Output()
   descriptionNewEvent : EventEmitter<any> = new EventEmitter<any>();
 
@@ -33,7 +38,7 @@ export class CardTodoComponent {
   }
 
   private _setRanting($event : any) : void {
-    this.ranting  = !this.ranting;
+    this.ranting = !this.ranting;
     $event.rating = this.ranting;
   }
 }

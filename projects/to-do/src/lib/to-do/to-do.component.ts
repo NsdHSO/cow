@@ -1,17 +1,28 @@
-import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
-import {Component, HostListener, OnDestroy, OnInit} from "@angular/core";
-import {Subject, takeUntil} from "rxjs";
+import {
+  CdkDragDrop,
+  moveItemInArray,
+} from "@angular/cdk/drag-drop";
+import {
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+} from "@angular/core";
+import {
+  Subject,
+  takeUntil,
+} from "rxjs";
 import {IToDo} from "./util/IToDo";
 import {ToDoService} from "./util/to-do.service";
 
 @Component({
-             selector   : "lib-to-do",
-             templateUrl: "./to-do.component.html",
-             styleUrls  : ["./to-do.component.scss"],
-           })
+  selector: "lib-to-do",
+  templateUrl: "./to-do.component.html",
+  styleUrls: ["./to-do.component.scss"],
+})
 export class ToDoComponent implements OnInit, OnDestroy {
-  todos                             = [] as IToDo[];
-  description                       = "";
+  todos = [] as IToDo[];
+  description = "";
   private $destroyed : Subject<any> = new Subject<any>();
 
   constructor(private readonly _toDoService : ToDoService) { }

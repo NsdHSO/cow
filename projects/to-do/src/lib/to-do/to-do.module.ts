@@ -11,19 +11,19 @@ import {ToDoRoutingModule} from "./to-do-routing.module";
 import {ToDoComponent} from "./to-do.component";
 
 @NgModule({
-            declarations: [
-              ToDoComponent,
-              CardTodoComponent,
-            ],
-            imports: [
-              CommonModule,
-              ToDoRoutingModule,
-              MatCardModule,
-              MatButtonModule,
-              MatCheckboxModule,
-              FormsModule,
-              MatIconModule,
-              DragDropModule,
-            ],
-          })
+  declarations: [
+    ToDoComponent,
+    CardTodoComponent,
+  ],
+  imports: [
+    CommonModule,
+    ToDoRoutingModule,
+    MatCardModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    FormsModule,
+    MatIconModule,
+    DragDropModule,
+  ],
+})
 export class ToDoModule {}
