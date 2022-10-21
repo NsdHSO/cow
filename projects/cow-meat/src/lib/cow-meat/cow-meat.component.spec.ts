@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+} from "@angular/core/testing";
+import {CowMeatComponent} from "./cow-meat.component";
 
-import { CowMeatComponent } from './cow-meat.component';
-
-describe('CowMeatComponent', () => {
-  let component: CowMeatComponent;
-  let fixture: ComponentFixture<CowMeatComponent>;
-
+describe("CowMeatComponent", () => {
+  let component : CowMeatComponent;
+  let fixture : ComponentFixture<CowMeatComponent>;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CowMeatComponent ]
+      declarations: [CowMeatComponent],
     })
-    .compileComponents();
-
+      .compileComponents();
     fixture = TestBed.createComponent(CowMeatComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it("should create", () => {
+    expect(component)
+      .toBeTruthy();
   });
 });

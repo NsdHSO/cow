@@ -1,1 +1,1 @@
-export * from './cow-meat.service'
+export * from "./cow-meat.service";

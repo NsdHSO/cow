@@ -1,8 +1,8 @@
-<canvas baseChart
-        [type]="'pie'"
-        [datasets]="pieChartDatasets"
+<canvas [datasets]="pieChartDatasets"
         [labels]="pieChartLabels"
+        [legend]="pieChartLegend"
         [options]="pieChartOptions"
         [plugins]="pieChartPlugins"
-        [legend]="pieChartLegend">
+        [type]="'pie'"
+        baseChart>
 </canvas>
