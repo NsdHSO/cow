@@ -1,0 +1,23 @@
+<div class="mat-elevation-z3 container">
+  <div class="container__header">
+    <div class="container__header__wrapper">
+      <div class="container__header__wrapper__label">
+        {{data.title}}
+      </div>
+      <div>
+        <h1>{{data.howMuch}}</h1>
+      </div>
+    </div>
+    <div>
+      <button mat-fab>
+        <mat-icon
+          [svgIcon]=data.icon
+          class="container__header__icon"
+        ></mat-icon>
+      </button>
+    </div>
+  </div>
+  <div>
+    {{data.feedback}}
+  </div>
+</div>

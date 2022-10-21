@@ -1,0 +1,25 @@
+.container {
+  max-width: 13rem;
+  height: 6rem;
+  border-radius: 10px;
+  width: 13rem;
+  padding: 1rem;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      align-content: flex-start;
+      justify-content: space-between;
+
+      &__label {
+        font-size: 15px;
+        color: #767676;
+        padding: 0 0 0.8rem;
+      }
+    }
+  }
+}

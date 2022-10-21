@@ -1,0 +1,13 @@
+{
+  "name": "ngx-vorkurt-dashboard",
+  "version": "0.0.2",
+  "peerDependencies": {
+    "@angular/common": "^14.0.0",
+    "@angular/core": "^14.0.0",
+    "@angular/cdk": "^14.0.0",
+    "@angular/flex-layout": "^14.0.0-beta.40"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}
