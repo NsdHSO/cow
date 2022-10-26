@@ -1,10 +1,9 @@
 import {NgModule} from "@angular/core";
-import {CoreToDogModule} from "../../../projects/to-do/src/lib/to-do/core-to-do.module";
+import { CoreEmailModule } from "projects/email/src/public-api";
 
 @NgModule({
-            declarations: [],
             imports     : [
-              CoreToDogModule.forRoot(),
+              CoreEmailModule.forRoot(),
             ],
           })
-export class NgxToDoModule {}
+export class NgxEmailModule {}

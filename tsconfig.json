@@ -7,6 +7,12 @@
       "cow-meat": [
         "dist/cow-meat"
       ],
+      "dashboard": [
+        "dist/dashboard"
+      ],
+      "email": [
+        "dist/email"
+      ],
       "reports": [
         "dist/reports"
       ],

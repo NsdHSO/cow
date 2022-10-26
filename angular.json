@@ -29,9 +29,10 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["node_modules/jquery/dist/jquery.min.js", "node_modules/bootstrap/dist/js/bootstrap.min.js"]
           },
           "configurations": {
             "production": {
@@ -194,6 +195,68 @@
             "main": "projects/to-do/src/test.ts",
             "tsConfig": "projects/to-do/tsconfig.spec.json",
             "karmaConfig": "projects/to-do/karma.conf.js"
+          }
+        }
+      }
+    },
+    "dashboard": {
+      "projectType": "library",
+      "root": "projects/dashboard",
+      "sourceRoot": "projects/dashboard/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/dashboard/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/dashboard/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/dashboard/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/dashboard/src/test.ts",
+            "tsConfig": "projects/dashboard/tsconfig.spec.json",
+            "karmaConfig": "projects/dashboard/karma.conf.js"
+          }
+        }
+      }
+    },
+    "email": {
+      "projectType": "library",
+      "root": "projects/email",
+      "sourceRoot": "projects/email/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/email/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/email/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/email/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/email/src/test.ts",
+            "tsConfig": "projects/email/tsconfig.spec.json",
+            "karmaConfig": "projects/email/karma.conf.js"
           }
         }
       }

@@ -1,11 +1,10 @@
 import {NgModule} from "@angular/core";
-import {CoreToDogModule} from "../../../projects/to-do/src/lib/to-do/core-to-do.module";
+import {CoreDashboardModule} from "../../../projects/dashboard/src/lib/dashboard/core-dashboard.module";
 
 @NgModule({
             declarations: [],
             imports     : [
-              CoreToDogModule.forRoot(),
+              CoreDashboardModule.forRoot(),
             ],
           })
-export class NgxToDoModule {}
-s
+export class NgxDashboardModule {}
