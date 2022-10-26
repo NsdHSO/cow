@@ -1,15 +1,17 @@
-<div class="cow-table-wrapper"
-     *ngIf="dataSourceMilkCow.length > 0; else spinner">
-  <lib-header-drop-down-download (onDownload)="download()" [optionsReport]="selectionsReport" [optionGraph] = "selectionsGraph"></lib-header-drop-down-download>
+<div *ngIf="dataSourceMilkCow.length > 0; else spinner"
+     class="cow-table-wrapper">
+  <lib-header-drop-down-download (onDownload)="download()"
+                                 [optionGraph]="selectionsGraph"
+                                 [optionsReport]="selectionsReport"></lib-header-drop-down-download>
   <elix-table
-    [dataSource]="dataSourceMilkCow"
-    [showPagination]="true"
-    [lenghtPagination]="allItem"
     (onPaginationChange)="changePage($event)"
+    [dataSource]="dataSourceMilkCow"
+    [lenghtPagination]="allItem"
+    [showPagination]="true"
   >
     <elix-column-text
-      className="number"
       [editRow]="true"
+      className="number"
       field="numberFromEar"
       name="Number Cow"
     ></elix-column-text>
@@ -54,15 +56,15 @@
       name="Birth"
     ></elix-column-text>
     <elix-column-text
-      className="how-much-eats"
       [editRow]="true"
+      className="how-much-eats"
       field="howMuchEats"
       name="How Eats"
     ></elix-column-text>
     <elix-column-icon-action
       className="action"
-      name="ACTION FIELD"
       field="action"
+      name="ACTION FIELD"
     ></elix-column-icon-action>
   </elix-table>
 </div>

@@ -1,4 +1,9 @@
-import {ModuleWithProviders, NgModule, Optional, SkipSelf} from "@angular/core";
+import {
+  ModuleWithProviders,
+  NgModule,
+  Optional,
+  SkipSelf,
+} from "@angular/core";
 import {ReportingModule} from "./reporting.module";
 
 @NgModule({})

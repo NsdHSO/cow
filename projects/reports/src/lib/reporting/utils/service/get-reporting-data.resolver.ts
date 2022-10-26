@@ -1,10 +1,14 @@
 import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
+import {
+  ActivatedRouteSnapshot,
+  Resolve,
+  RouterStateSnapshot,
+} from "@angular/router";
 import {ReportingService} from "./reporting.service";
 
 @Injectable({
-              providedIn: "root",
-            })
+  providedIn: "root",
+})
 export class GetReportingDataResolver implements Resolve<void> {
   public constructor(private readonly _reportingService : ReportingService) {
   }

@@ -1,2 +1,2 @@
-export  * from './reporting.service'
-export * from './download-csv.service'
+export * from "./reporting.service";
+export * from "./download-csv.service";

@@ -1,7 +1,13 @@
-import {Component, OnInit} from "@angular/core";
+import {
+  Component,
+  OnInit,
+} from "@angular/core";
 import {PageEvent} from "@angular/material/paginator";
 import {ActivatedRoute} from "@angular/router";
-import {DataSourceMaterialTable, IActionMaterialColumn} from "ngx-liburg";
+import {
+  DataSourceMaterialTable,
+  IActionMaterialColumn,
+} from "ngx-liburg";
 import {SpinnerService} from "ngx-liburg-icon";
 import {BehaviorSubject} from "rxjs";
 import {ReportingService} from "./utils";
@@ -9,41 +15,42 @@ import {IMilkCow} from "./utils/interface/i-milk-cow";
 import {ISelectionState} from "./utils/interface/ISelection-state";
 
 @Component({
-             selector   : "lib-reporting",
-             templateUrl: "./reporting.component.html",
-             styleUrls  : ["./reporting.component.scss"],
-           })
+  selector: "lib-reporting",
+  templateUrl: "./reporting.component.html",
+  styleUrls: ["./reporting.component.scss"],
+})
 export class ReportingComponent implements OnInit {
   public dataSourceMilkCow : IMilkCow[] | any;
   public isLoading : BehaviorSubject<boolean> | undefined = new BehaviorSubject<boolean>(
     true);
-  public allItem                                          = 0;
+  public allItem = 0;
   public selectionsReport : ISelectionState[];
   public selectionsGraph : ISelectionState[];
 
   constructor(
     private readonly _activateRouter : ActivatedRoute,
     private readonly _spinerStateSerice : SpinnerService,
-    private readonly _reportingService : ReportingService) {
+    private readonly _reportingService : ReportingService,
+  ) {
     this.selectionsReport = [] as ISelectionState[];
-    this.selectionsGraph  = [] as ISelectionState[];
+    this.selectionsGraph = [] as ISelectionState[];
   }
 
   ngOnInit() : void {
     this._reportingService.getData.subscribe((cows : any) => {
-      this.allItem           = cows.allItems;
-      this.selectionsReport  = cows.report;
-      this.selectionsGraph   = cows.graph;
+      this.allItem = cows.allItems;
+      this.selectionsReport = cows.report;
+      this.selectionsGraph = cows.graph;
       this.dataSourceMilkCow = cows.items.map((cowMilk : IMilkCow) => {
         this._spinerStateSerice.sendValue(true);
         const model = <IMilkCow> cowMilk;
         return {
-          actions : this._actionTableListCow(),
+          actions: this._actionTableListCow(),
           editable: false,
-          model   : {
+          model: {
             ...model,
             insemination: model.numberIn.insemination,
-            lact        : model.numberIn.lact,
+            lact: model.numberIn.lact,
           },
         } as DataSourceMaterialTable<any>;
       });
@@ -65,8 +72,8 @@ export class ReportingComponent implements OnInit {
     return [
       {
         iconClass: "fa_solid:gauge",
-        classCss : "edit",
-        method   : (row : DataSourceMaterialTable<IMilkCow>) => {
+        classCss: "edit",
+        method: (row : DataSourceMaterialTable<IMilkCow>) => {
           row.editable = !row.editable;
         },
       },

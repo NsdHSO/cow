@@ -1,7 +1,7 @@
 <div class="drop-down__selection">
-  <select class="drop-down__selection__select"
+  <select (change)="select()"
           [(ngModel)]="selectText"
-          (change)="select()"
+          class="drop-down__selection__select"
   >
     <option [ngValue]="null"
             disabled>{{disabledText}}

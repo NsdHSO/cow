@@ -6,28 +6,26 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {TableMaterialModule} from "ngx-liburg";
 import {SpinnerModule} from "ngx-liburg-icon";
-import {
-  HeaderDropDownDownloadComponent,
-} from "./components/header-drop-down-download/header-drop-down-download.component";
+import {HeaderDropDownDownloadComponent} from "./components/header-drop-down-download/header-drop-down-download.component";
 import {SharedModule} from "./components/shared/shared.module";
 import {ReportingRoutingModule} from "./reporting-routing.module";
 import {ReportingComponent} from "./reporting.component";
 
 @NgModule({
-            declarations: [
-              ReportingComponent,
-              HeaderDropDownDownloadComponent,
-            ],
-            imports: [
-              CommonModule,
-              ReportingRoutingModule,
-              TableMaterialModule,
-              MatButtonModule,
-              SpinnerModule,
-              MatFormFieldModule,
-              MatSelectModule,
-              FormsModule,
-              SharedModule,
-            ],
-          })
+  declarations: [
+    ReportingComponent,
+    HeaderDropDownDownloadComponent,
+  ],
+  imports: [
+    CommonModule,
+    ReportingRoutingModule,
+    TableMaterialModule,
+    MatButtonModule,
+    SpinnerModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    FormsModule,
+    SharedModule,
+  ],
+})
 export class ReportingModule {}

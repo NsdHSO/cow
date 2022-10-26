@@ -2,25 +2,25 @@
   <div class="cow-table-wrapper__header">
     <div class="cow-table-wrapper__header__select">
       <div>
-        <lib-drop-down [options]="optionsReport"
+        <lib-drop-down (selectOption)="selectReport($event)"
                        [disabledText]="'Select report'"
-                       (selectOption)="selectReport($event)"></lib-drop-down>
+                       [options]="optionsReport"></lib-drop-down>
       </div>
       <div class="cow-table-wrapper__header__select__graph">
         <div>
           Select graph
         </div>
         <div>
-          <lib-drop-down [options]="optionGraph"
+          <lib-drop-down (selectOption)="selectGraph($event)"
                          [disabledText]="'Select Graph'"
-                         (selectOption)="selectGraph($event)"
+                         [options]="optionGraph"
           ></lib-drop-down>
         </div>
       </div>
     </div>
     <div class="cow-table-wrapper__export">
-      <button mat-raised-button
-              (click)="actionDownload()"
+      <button (click)="actionDownload()"
+              mat-raised-button
       >Download csv
       </button>
     </div>
