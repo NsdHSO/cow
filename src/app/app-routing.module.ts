@@ -3,7 +3,7 @@ import {RouterModule, Routes} from "@angular/router";
 
 const routes : Routes = [
   {
-    path        : "",
+    path        : "email",
     loadChildren: () => import("./@core/email.module").then(
       m => m.NgxEmailModule),
   },
