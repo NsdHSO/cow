@@ -1,0 +1,19 @@
+<div class="w-50">
+  <ng-container *ngIf="products$ | async as products; else loading">
+    <div class="bg-secondary m-2 border-1 rounded-2 p-4"
+         *ngFor="let product of products">
+      <lib-post [product]="product" *ngIf="products.length">
+      </lib-post>
+    </div>
+  </ng-container>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>
+<ng-container *ngIf="(products$ | async)?.length ===0">
+  You don't have Products
+</ng-container>
+<ng-template #loading>
+  "TESTASDsda"
+</ng-template>
+

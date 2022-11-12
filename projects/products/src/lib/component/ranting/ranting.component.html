@@ -1,0 +1,12 @@
+<div *ngFor="let star of [].constructor(10); let index = index"
+     class="ranting">
+  <mat-icon [svgIcon]="'fa_regular:star-half'"
+            [ngClass]="getColor(index)"
+            *ngIf="index %2 ==0"
+  ></mat-icon>
+  <mat-icon class="ranting__rotate-icon"
+            [svgIcon]="'fa_regular:star-half'"
+            [ngClass]="getColor(index)"
+            *ngIf="index %2 !=0"
+  ></mat-icon>
+</div>

@@ -11,4 +11,9 @@ import {Product} from '../../product.model';
 })
 export class PostComponent {
   @Input() product = {} as Product;
+  index : number = 0;
+
+  public triggerArrow($event : { index : number }) : void {
+    this.index = $event.index;
+  }
 }

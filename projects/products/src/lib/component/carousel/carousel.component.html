@@ -1,0 +1,19 @@
+<div class="d-flex justify-content-between align-items-center h-100">
+  <div>
+    <button mat-button
+            (click)="triggerArrow({key: true})">
+      <mat-icon [svgIcon]="'fa_solid:arrow-left'"
+      ></mat-icon>
+    </button>
+  </div>
+  <div>
+    <ng-content></ng-content>
+  </div>
+  <div>
+    <button mat-button
+            (click)="triggerArrow({key: false})">
+      <mat-icon [svgIcon]="'fa_solid:arrow-right'"
+      ></mat-icon>
+    </button>
+  </div>
+</div>

@@ -1,27 +1,33 @@
-<div>
-  <div >
-
+<lib-jumbotron>
+  <lib-carousel header
+                (actionArrow)="triggerArrow($event)"
+                [images]="product.images">
+    <div class="container__post">
+      <img [src]="product.images[index].fileName"
+           [alt]="product.name">
+    </div>
+  </lib-carousel>
+  <div body>
+    <div>
+      <h3>
+        {{product.name}}
+      </h3>
+    </div>
+    <div class="text-primary">
+      <h4>
+      {{product.cost | currency}}
+      </h4>
+    </div>
+    <div>
+      {{product.ranting}} ranting
+      <lib-ranting [rantingProduct]="product.ranting"></lib-ranting>
+    </div>
+    <div>
+      <button mat-button>
+        Edit Product
+      </button>
+    </div>
   </div>
   <div>
-    <div>
-      <div>
-        {{product.name}}
-      </div>
-      <div>
-        ${{product.cost}}
-      </div>
-      <div>
-        {{product.ranting}} ranting
-      </div>
-
-      <div>
-        <button mat-button>
-          Edit Product
-        </button>
-      </div>
-    </div>
-    <div>
-
-    </div>
   </div>
-</div>
+</lib-jumbotron>

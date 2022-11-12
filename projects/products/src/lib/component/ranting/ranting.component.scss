@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  max-width: 9rem;
+}
+
+.ranting {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+
+  &__rotate-icon {
+    transform: scaleX(-1) translateX(24px);
+  }
+
+}
+
+.colored {
+  ::ng-deep {
+
+    svg {
+      fill: yellow;
+    }
+  }
+}
+
