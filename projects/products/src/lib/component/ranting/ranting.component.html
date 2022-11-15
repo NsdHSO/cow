@@ -1,12 +1,11 @@
-<div *ngFor="let star of [].constructor(10); let index = index"
-     class="ranting">
-  <mat-icon [svgIcon]="'fa_regular:star-half'"
-            [ngClass]="getColor(index)"
-            *ngIf="index %2 ==0"
-  ></mat-icon>
-  <mat-icon class="ranting__rotate-icon"
-            [svgIcon]="'fa_regular:star-half'"
-            [ngClass]="getColor(index)"
-            *ngIf="index %2 !=0"
+<div *ngFor="let sta of [].constructor(5); let stars = index"
+     (mouseenter)="enterMouse(stars)"
+     (mouseleave)="mouseLeave()"
+     (click)="changeRanting(stars)"
+     [ngClass]="getColor(stars)"
+     class="ranting"
+>
+  <mat-icon
+            [svgIcon]="'fa_solid:star'"
   ></mat-icon>
 </div>

@@ -31,6 +31,16 @@ export class ProductsService {
     private _httpClient : HttpClient
   ) { }
 
+  updateProduct(updatePayload : any, productId : number) {
+    this._httpClient.patch<Product>(
+      `${this._environment.apiProducts}/product/${productId}`, updatePayload)
+      .pipe(tap(data => console.table(data))
+        , catchError(this.handleError),
+        share()
+      )
+      .subscribe();
+  }
+
   private handleError(err : HttpErrorResponse) : Observable<never> {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console

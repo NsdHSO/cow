@@ -1,10 +1,8 @@
-<div class="w-50">
+<div class="product">
   <ng-container *ngIf="products$ | async as products; else loading">
-    <div class="bg-secondary m-2 border-1 rounded-2 p-4"
-         *ngFor="let product of products">
-      <lib-post [product]="product" *ngIf="products.length">
-      </lib-post>
-    </div>
+    <lib-post [product]="product"
+              *ngFor="let product of products">
+    </lib-post>
   </ng-container>
 </div>
 <div>

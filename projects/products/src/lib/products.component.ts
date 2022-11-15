@@ -9,7 +9,8 @@ import {ProductsService} from './products.service';
 
 @Component({
   selector: 'lib-products',
-  templateUrl: 'product.component.html'
+  templateUrl: 'product.component.html',
+  styleUrls:['product.component.scss']
 })
 export class ProductsComponent implements OnInit {
   products$ : Observable<Product[]> | undefined;

@@ -10,15 +10,25 @@
 
   &__rotate-icon {
     transform: scaleX(-1) translateX(24px);
+    ::ng-deep{
+      mat-icon{
+
+        svg{
+          height: 24px;
+          width: 24px;
+        }
+      }
+    }
   }
 
 }
 
 .colored {
   ::ng-deep {
-
-    svg {
-      fill: yellow;
+    mat-icon {
+      svg {
+        fill: yellow;
+      }
     }
   }
 }

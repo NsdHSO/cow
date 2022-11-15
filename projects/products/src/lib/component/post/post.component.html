@@ -1,10 +1,16 @@
 <lib-jumbotron>
-  <lib-carousel header
-                (actionArrow)="triggerArrow($event)"
-                [images]="product.images">
-    <div class="container__post">
-      <img [src]="product.images[index].fileName"
-           [alt]="product.name">
+  <lib-carousel
+    header
+    (actionArrow)="triggerArrow($event)"
+    [images]="product.images">
+    <div class="container__post"
+    >
+      <img
+        @move
+        *ngIf="product.images.length !== 0 && product.images[index]?.fileName; else noImage"
+        [src]="product.images[index].fileName"
+        [alt]="product.name"
+      >
     </div>
   </lib-carousel>
   <div body>
@@ -15,12 +21,12 @@
     </div>
     <div class="text-primary">
       <h4>
-      {{product.cost | currency}}
+        {{product.cost | currency}}
       </h4>
     </div>
     <div>
       {{product.ranting}} ranting
-      <lib-ranting [rantingProduct]="product.ranting"></lib-ranting>
+      <lib-ranting [product]="product"></lib-ranting>
     </div>
     <div>
       <button mat-button>
@@ -31,3 +37,6 @@
   <div>
   </div>
 </lib-jumbotron>
+<ng-template #noImage>
+  <h1>You don't have image here </h1>
+</ng-template>
