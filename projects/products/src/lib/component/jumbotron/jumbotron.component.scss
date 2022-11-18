@@ -1,7 +1,10 @@
+:host{
+  max-width: 20rem;
+}
+
 .container{
   &-jumbotron{
     background-color: rgba(188,188,188 ,0.3) !important;
-
     &__header{
       height: 10rem
     }

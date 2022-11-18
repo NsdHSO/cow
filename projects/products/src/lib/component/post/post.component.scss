@@ -1,7 +1,12 @@
+:host{
+  max-width: 20rem;
+}
+
 .container{
   &__post{
     img{
       height: 9rem;
+      min-width: 9rem;
     }
   }
 }
