@@ -12,7 +12,7 @@ import {
 } from '@angular/material/dialog';
 import {Product} from '../../product.model';
 
-class DialogData {
+export class DialogData {
   data : any;
   trigger : any;
 }
@@ -22,7 +22,7 @@ class DialogData {
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
-export class EditComponent implements OnInit, AfterViewInit {
+export class EditComponent implements OnInit {
   public triggerElementRef : any;
   public product : any;
   private _keys : any;
@@ -56,10 +56,8 @@ export class EditComponent implements OnInit, AfterViewInit {
     matDialogConfig.width = 'max-content';
     this.dialogRef.updateSize(matDialogConfig.width);
     this.dialogRef.updatePosition(matDialogConfig.position);
-  }
-
-  public ngAfterViewInit() : void {
     this._keys = this.getAllKeys(this.product);
+
   }
 
   public changeValue(event : any , property : any) : void {
