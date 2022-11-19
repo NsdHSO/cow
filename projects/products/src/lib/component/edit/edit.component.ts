@@ -71,6 +71,6 @@ export class EditComponent implements OnInit, AfterViewInit {
   }
 
   private getAllKeys(product : Product) : string[] {
-    return Object.keys(product);
+    return Object.keys(product).filter(key => key !== 'id');
   }
 }
