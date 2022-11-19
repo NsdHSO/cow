@@ -1,4 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  Inject,
+  OnInit
+} from '@angular/core';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef
+} from '@angular/material/dialog';
+
+class DialogData {
+  data : any;
+}
 
 @Component({
   selector: 'lib-edit',
@@ -6,10 +18,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
+  constructor(
+    public dialogRef : MatDialogRef<EditComponent>,
+    @Inject(MAT_DIALOG_DATA) public data : DialogData
+  ) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  onNoClick() : void {
+    this.dialogRef.close();
   }
 
+  ngOnInit() : void {
+  }
 }
