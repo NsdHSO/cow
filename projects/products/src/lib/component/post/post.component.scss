@@ -1,12 +1,25 @@
-:host{
+:host {
   max-width: 20rem;
 }
 
-.container{
-  &__post{
-    img{
+.container {
+  &__post {
+    img {
       height: 9rem;
       min-width: 9rem;
     }
+
+    &-head {
+      display: flex;
+      justify-content: space-between;
+
+      &__cursor-pointer{
+        cursor: pointer;
+      }
+    }
   }
+}
+
+.red-heart{
+  color: indianred;
 }

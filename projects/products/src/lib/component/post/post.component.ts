@@ -6,10 +6,12 @@ import {
 } from '@angular/animations';
 import {
   Component,
+  ElementRef,
   Input
 } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {Product} from '../../product.model';
+import {ProductsService} from '../../products.service';
 import {EditComponent} from '../edit/edit.component';
 
 @Component({
@@ -41,20 +43,30 @@ export class PostComponent {
   @Input() product = {} as Product;
   index : number = 0;
 
-  constructor(public matDialog : MatDialog) {}
+  constructor(public matDialog : MatDialog,
+    private _productService : ProductsService) {}
 
   public triggerArrow($event : { index : number }) : void {
     this.index = $event.index;
   }
 
-  openDialog(data : any) : void {
+  openDialog(data : Product, event : any) : void {
+    const target = new ElementRef(event.currentTarget);
     const refDialog = this.matDialog.open(EditComponent, {
       width: '250px',
-      data: data
+      data: {
+        data,
+        trigger: target
+      }
     });
+    refDialog.afterClosed()
+      .subscribe(r => {
+        this._productService.updateProduct(this.product, this.product.id);
+      });
+  }
 
-    refDialog.afterClosed().subscribe(r => {
-      console.log('Dialog closed')
-    })
+  public toggleHeart() : void {
+    this.product.love = !this.product.love
+    this._productService.updateProduct(this.product, this.product.id);
   }
 }

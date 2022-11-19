@@ -6,7 +6,6 @@
     <div class="container__post"
     >
       <img
-        @move
         *ngIf="product.images.length !== 0 && product.images[index]?.fileName; else noImage"
         [src]="product.images[index].fileName"
         [alt]="product.name"
@@ -14,10 +13,17 @@
     </div>
   </lib-carousel>
   <div body>
-    <div>
+    <div class="container__post-head">
       <h3>
         {{product.name}}
       </h3>
+      <div>
+        <mat-icon  class="container__post-head__cursor-pointer"
+          [svgIcon]="'fa_solid:heart'"
+                  [ngClass]="{'red-heart': product.love}"
+                  (click)="toggleHeart()"
+        ></mat-icon>
+      </div>
     </div>
     <div class="text-primary">
       <h4>
@@ -29,7 +35,8 @@
       <lib-ranting [product]="product"></lib-ranting>
     </div>
     <div>
-      <button mat-button (click)="openDialog(product)">
+      <button mat-button
+              (click)="openDialog(product, $event)">
         Edit Product
       </button>
     </div>

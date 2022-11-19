@@ -1,1 +1,35 @@
-<p>edit works!</p>
+<div class="container-edit">
+  <div *ngFor="let keyProduct of keys"
+       class="container-edit__detail">
+    <div>
+      {{keyProduct}}
+    </div>
+    <div *ngIf="keyProduct !== 'images' && product.images.length > 0 && keyProduct !=='love'">
+      <input
+        *ngIf="(product | extractValue : keyProduct) as prd"
+        [value]="prd"
+        [ngModel]="prd"
+        (ngModelChange)="changeValue($event,keyProduct)"/>
+    </div>
+    <div *ngIf="keyProduct === 'images' && product.images.length > 0">
+      <div *ngFor="let image of product['images']; let index=index">
+        <input [value]="image.fileName"
+               [(ngModel)]="image.fileName"
+               />
+      </div>
+    </div>
+    <div *ngIf="keyProduct==='love'">
+      <mat-checkbox
+        [checked]="product | extractValue : keyProduct"
+        (change)="changeValue($event,keyProduct)"
+      >
+      </mat-checkbox>
+    </div>
+  </div>
+  <div>
+    <button mat-button
+            (click)="onNoClick()">
+      Close
+    </button>
+  </div>
+</div>

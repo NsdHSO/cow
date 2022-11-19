@@ -5,6 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {
+  MAT_DIALOG_DEFAULT_OPTIONS,
   MatDialog,
   MatDialogModule
 } from '@angular/material/dialog';
@@ -17,6 +18,7 @@ import {PostComponent} from './component/post/post.component';
 import {RantingComponent} from './component/ranting/ranting.component';
 import {ProductRoutingModule} from './product-routing.module';
 import {ProductsComponent} from './products.component';
+import {ExtractValuePipe} from './utils/extract-value.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import {ProductsComponent} from './products.component';
     JumbotronComponent,
     PostComponent,
     CarouselComponent,
-    RantingComponent
+    RantingComponent,
+    ExtractValuePipe
   ],
   imports: [
     ProductRoutingModule,
@@ -39,10 +42,13 @@ import {ProductsComponent} from './products.component';
     MatDialogModule
   ],
   exports: [
-    ProductsComponent
+    ProductsComponent,
+    ExtractValuePipe
   ],
   providers: [
-    MatDatepickerModule
+    MatDatepickerModule,
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+
   ]
 })
 export class ProductsModule {}
