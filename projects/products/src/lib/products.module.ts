@@ -47,7 +47,7 @@ import {ExtractValuePipe} from './utils/extract-value.pipe';
   ],
   providers: [
     MatDatepickerModule,
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}
 
   ]
 })
