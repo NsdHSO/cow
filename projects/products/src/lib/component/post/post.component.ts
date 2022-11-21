@@ -10,7 +10,10 @@ import {
   Input
 } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {Product} from '../../product.model';
+import {
+  Product,
+  ProductImage
+} from '../../product.model';
 import {ProductsService} from '../../products.service';
 import {EditComponent} from '../edit/edit.component';
 
@@ -43,8 +46,10 @@ export class PostComponent {
   @Input() product = {} as Product;
   index : number = 0;
 
-  constructor(public matDialog : MatDialog,
-    private _productService : ProductsService) {}
+  constructor(
+    public matDialog : MatDialog,
+    private readonly _productService : ProductsService
+  ) {}
 
   public triggerArrow($event : { index : number }) : void {
     this.index = $event.index;
@@ -52,6 +57,7 @@ export class PostComponent {
 
   openDialog(data : Product, event : any) : void {
     const target = new ElementRef(event.currentTarget);
+    data.images = [{fileName: '' }]as ProductImage []
     const refDialog = this.matDialog.open(EditComponent, {
       width: '250px',
       data: {
@@ -66,7 +72,7 @@ export class PostComponent {
   }
 
   public toggleHeart() : void {
-    this.product.love = !this.product.love
+    this.product.love = !this.product.love;
     this._productService.updateProduct(this.product, this.product.id);
   }
 }

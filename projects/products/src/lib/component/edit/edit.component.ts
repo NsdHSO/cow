@@ -61,6 +61,8 @@ export class EditComponent implements OnInit {
   }
 
   public changeValue(event : any , property : any) : void {
+    console.log(this.product)
+
     if(event instanceof MatCheckboxChange){
       this.product[property] = event.checked;
     }else {

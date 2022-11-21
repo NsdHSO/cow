@@ -8,9 +8,11 @@ import {
 } from '@angular/core';
 import {
   catchError,
+  merge,
   Observable,
+  scan,
   share,
-  tap,
+  Subject,
   throwError
 } from 'rxjs';
 import {Product} from './product.model';
@@ -20,9 +22,19 @@ import {Product} from './product.model';
 })
 export class ProductsService {
   products$ = this._httpClient.get<Product[]>(`${this._environment.apiProducts}/product`)
-    .pipe(tap(data => console.table(data))
-      , catchError(this.handleError),
+    .pipe(
+      catchError(this.handleError),
       share()
+    );
+  private newProduct : Subject<Product> = new Subject<Product>();
+  newProduct$ = this.newProduct.asObservable();
+  // @ts-ignore
+  productWithAdd$ = merge(this.products$, this.newProduct$
+  )
+    .pipe(
+      scan((acc, value) => (value instanceof Array)
+        ? [...value]
+        : [...acc, value], [] as Product[])
     );
 
   constructor(
@@ -31,12 +43,15 @@ export class ProductsService {
     private _httpClient : HttpClient
   ) { }
 
+  addNewProduct(product : Product) {
+    this.newProduct.next(product);
+  }
+
   updateProduct(updatePayload : any, productId : number) {
     this._httpClient.patch<Product>(
       `${this._environment.apiProducts}/product/${productId}`, updatePayload)
-      .pipe(tap(data => console.table(data))
-        , catchError(this.handleError),
-        share()
+      .pipe(
+        catchError(this.handleError)
       )
       .subscribe();
   }

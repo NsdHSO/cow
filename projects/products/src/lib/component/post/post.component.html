@@ -18,8 +18,8 @@
         {{product.name}}
       </h3>
       <div>
-        <mat-icon  class="container__post-head__cursor-pointer"
-          [svgIcon]="'fa_solid:heart'"
+        <mat-icon class="container__post-head__cursor-pointer"
+                  [svgIcon]="'fa_solid:heart'"
                   [ngClass]="{'red-heart': product.love}"
                   (click)="toggleHeart()"
         ></mat-icon>
@@ -40,8 +40,6 @@
         Edit Product
       </button>
     </div>
-  </div>
-  <div>
   </div>
 </lib-jumbotron>
 <ng-template #noImage>

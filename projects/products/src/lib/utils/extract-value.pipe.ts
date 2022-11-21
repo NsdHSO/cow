@@ -11,6 +11,6 @@ export class ExtractValuePipe implements PipeTransform {
     if(value[args[0]] === false || value[args[0]] === true){
       return !!value[args[0]]
     }
-    return value[args[0]];
+    return value[args[0]] ?  value[args[0]] : ' ';
   }
 }

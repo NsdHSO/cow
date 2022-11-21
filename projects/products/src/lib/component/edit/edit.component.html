@@ -4,18 +4,22 @@
     <div>
       {{keyProduct}}
     </div>
-    <div *ngIf="keyProduct !== 'images' && product.images.length > 0 && keyProduct !=='love'">
+    <div *ngIf="keyProduct !== 'images' && product.images.length >= 0 && keyProduct !=='love'">
       <input
         *ngIf="(product | extractValue : keyProduct) as prd"
         [value]="prd"
         [ngModel]="prd"
         (ngModelChange)="changeValue($event,keyProduct)"/>
     </div>
-    <div *ngIf="keyProduct === 'images' && product.images.length > 0">
-      <div *ngFor="let image of product['images']; let index=index">
+    <div *ngIf="keyProduct === 'images' && product.images.length >= 0">
+      <div *ngFor="let image of product['images']">
         <input [value]="image.fileName"
                [(ngModel)]="image.fileName"
-               />
+        />
+      </div>
+      <div *ngIf="product['images'].length === 0 ">
+        <input [ngModel]="product['images'][0].fileName"
+               (ngModelChange)="changeValue($event,keyProduct)"/>
       </div>
     </div>
     <div *ngIf="keyProduct==='love'">
