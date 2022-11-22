@@ -1,17 +1,20 @@
-<div class="d-flex flex-wrap">
-  <ng-container class="product" *ngIf="products$ | async as products; else loading">
+<div class="d-flex flex-wrap product">
+  <ng-container
+                *ngIf="products$ | async as products ; else loading">
     <lib-post [product]="product"
               *ngFor="let product of products">
     </lib-post>
+    <ng-container>
+      <div class="d-flex product__add-new">
+        <button mat-button
+                (click)="addNewProduct()">
+          <mat-icon [svgIcon]="'fa_solid:circle-plus'"></mat-icon>
+        </button>
+      </div>
+    </ng-container>
   </ng-container>
   <router-outlet></router-outlet>
 </div>
-<div>
-  <button mat-button (click)="addNewProduct()">
-    <mat-icon [svgIcon]="'fa_solid:circle-plus'"></mat-icon>
-  </button>
-</div>
-
 <ng-container *ngIf="(products$ | async)?.length ===0">
   You don't have Products
 </ng-container>
