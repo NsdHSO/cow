@@ -8,10 +8,10 @@ import {environment} from '../../../../src/environments/environment';
 import {ProductsComponent} from './products.component';
 import {ProductsService} from './products.service';
 
-fdescribe('ProductsComponent', () => {
+describe('ProductsComponent', () => {
   let component : ProductsComponent;
   let fixture : ComponentFixture<ProductsComponent>;
-  let productService = jasmine.createSpyObj('ProductsService', ['addNewProduct']);
+  let productServiceSpy = jasmine.createSpyObj('ProductsService', ['addNewProduct']);
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ProductsComponent],
@@ -22,7 +22,7 @@ fdescribe('ProductsComponent', () => {
       providers: [
         {
           provider: ProductsService,
-          useValue: productService
+          useValue: productServiceSpy
         },
         {
           provide: 'env',
@@ -31,7 +31,7 @@ fdescribe('ProductsComponent', () => {
       ]
     })
       .compileComponents();
-    productService = TestBed.inject(ProductsService) as jasmine.SpyObj<ProductsService>;
+    productServiceSpy = TestBed.inject(ProductsService) as jasmine.SpyObj<ProductsService>;
     fixture = TestBed.createComponent(ProductsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -41,9 +41,9 @@ fdescribe('ProductsComponent', () => {
       .toBeTruthy();
   });
   it('should add new product', () => {
-    productService.addNewProduct = jasmine.createSpy().and.returnValue({})
+    productServiceSpy.addNewProduct = jasmine.createSpy().and.returnValue({})
 
     component.addNewProduct();
-    expect(productService.addNewProduct).toHaveBeenCalled()
+    expect(productServiceSpy.addNewProduct).toHaveBeenCalled()
   });
 });

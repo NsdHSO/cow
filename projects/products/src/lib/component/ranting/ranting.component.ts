@@ -47,15 +47,10 @@ export class RantingComponent {
   }
 
   public changeRanting(numberOfStar : number) : void {
-    console.log(++numberOfStar);
-    this.product.ranting = numberOfStar;
+    this.product.ranting = ++numberOfStar;
     this.updateRanting({
       id: this.product.id,
       ranting: this.product.ranting
     });
-  }
-
-  public console(icon : number) : void {
-    console.log((icon));
   }
 }
