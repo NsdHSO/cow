@@ -58,4 +58,11 @@ describe('RantingComponent', () => {
     expect(component.cloneProduct)
       .toEqual(component.product);
   });
+
+  it('should increment ranting from clone', () => {
+    component.cloneProduct = {};
+    component.enterMouse(2);
+    expect(component.cloneProduct.ranting)
+      .toEqual(3);
+  });
 });
