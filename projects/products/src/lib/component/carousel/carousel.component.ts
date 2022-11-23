@@ -1,10 +1,4 @@
 import {
-  animate,
-  style,
-  transition,
-  trigger
-} from '@angular/animations';
-import {
   Component,
   EventEmitter,
   Input,
@@ -15,7 +9,7 @@ import {ProductImage} from '../../product.model';
 @Component({
   selector: 'lib-carousel',
   templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.scss'],
+  styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent {
   @Output()

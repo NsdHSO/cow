@@ -6,40 +6,41 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {
   MAT_DIALOG_DEFAULT_OPTIONS,
-  MatDialog,
   MatDialogModule
 } from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {RouterOutlet} from '@angular/router';
 import {CarouselComponent} from './component/carousel/carousel.component';
+import {EditModule} from './component/edit/edit.module';
 import {JumbotronComponent} from './component/jumbotron/jumbotron.component';
 import {PostComponent} from './component/post/post.component';
 import {RantingComponent} from './component/ranting/ranting.component';
 import {ProductRoutingModule} from './product-routing.module';
 import {ProductsComponent} from './products.component';
 import {ExtractValuePipe} from './utils/extract-value.pipe';
+import {UtilsModule} from './utils/utils.module';
 
 @NgModule({
   declarations: [
-    ProductsComponent,
-    JumbotronComponent,
-    PostComponent,
     CarouselComponent,
+    JumbotronComponent,
     RantingComponent,
-    ExtractValuePipe
+    PostComponent,
+    ProductsComponent
   ],
   imports: [
-    ProductRoutingModule,
-    RouterOutlet,
     CommonModule,
+    UtilsModule,
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
     MatDatepickerModule,
     ReactiveFormsModule,
     MatNativeDateModule,
-    MatDialogModule
+    MatDialogModule,
+    ProductRoutingModule,
+    RouterOutlet
   ],
   exports: [
     ProductsComponent,
@@ -47,8 +48,6 @@ import {ExtractValuePipe} from './utils/extract-value.pipe';
   ],
   providers: [
     MatDatepickerModule,
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}
-
   ]
 })
 export class ProductsModule {}

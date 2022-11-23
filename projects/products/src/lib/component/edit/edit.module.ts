@@ -3,11 +3,13 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 import {
   RouterModule,
   Routes
 } from '@angular/router';
-import {ProductsModule} from '../../products.module';
+import {ExtractValuePipe} from '../../utils/extract-value.pipe';
+import {UtilsModule} from '../../utils/utils.module';
 import {EditComponent} from './edit.component';
 
 const routes : Routes = [
@@ -23,9 +25,9 @@ const routes : Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     MatButtonModule,
-    ProductsModule,
     FormsModule,
-    MatCheckboxModule
-  ]
+    MatCheckboxModule,
+    UtilsModule
+  ],
 })
 export class EditModule {}

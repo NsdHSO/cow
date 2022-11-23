@@ -6,16 +6,10 @@ import {
 } from '@angular/router';
 import {ProductsComponent} from './products.component';
 
-const routes : Routes = [
+export const routes : Routes = [
   {
-    path:'',
-    component: ProductsComponent,
-    children: [
-      {
-        path: 'edit',
-        loadChildren: () => import('./component/edit/edit.module').then(m => m.EditModule)
-      }
-    ]
+    path: '',
+    component: ProductsComponent
   }
 ];
 

@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Component,
   Inject,
   OnInit
@@ -57,20 +56,20 @@ export class EditComponent implements OnInit {
     this.dialogRef.updateSize(matDialogConfig.width);
     this.dialogRef.updatePosition(matDialogConfig.position);
     this._keys = this.getAllKeys(this.product);
-
   }
 
-  public changeValue(event : any , property : any) : void {
-    console.log(this.product)
-
-    if(event instanceof MatCheckboxChange){
+  public changeValue(event : any, property : any) : void {
+    console.log(this.product);
+    if(event instanceof MatCheckboxChange) {
       this.product[property] = event.checked;
-    }else {
+    }
+    else {
       this.product[property] = event;
     }
   }
 
   private getAllKeys(product : Product) : string[] {
-    return Object.keys(product).filter(key => key !== 'id');
+    return Object.keys(product)
+      .filter(key => key !== 'id');
   }
 }
