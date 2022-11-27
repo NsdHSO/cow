@@ -1,34 +1,15 @@
-<div class="cow-table-wrapper">
-  <elix-table
-    [dataSource]="dataSourceCow"
-    [lenghtPagination]="dataSourceCow.length"
-    [showPagination]="true"
+<mat-sidenav-container class="h-100 container-cow"
+                       *ngIf="true"
+                       [hasBackdrop]="false"
+>
+  <mat-sidenav #sidenav
+               [mode]="mode.value || 'over'"
+                position="end"
   >
-    <elix-column-text
-      [editRow]="true"
-      className="number"
-      field="number"
-      name="Number Cow"
-    ></elix-column-text>
-    <elix-column-text
-      className="birth"
-      field="birth"
-      name="Birth"
-    ></elix-column-text>
-    <elix-column-text
-      [editRow]="true"
-      className="how-much-eats"
-      field="howMuchEats"
-      name="How Eats"
-    ></elix-column-text>
-    <elix-column-icon-action
-      className="action"
-      field="action"
-      name="ACTION FIELD"
-    ></elix-column-icon-action>
-  </elix-table>
-  <div>
-    <cow-profitability-clock></cow-profitability-clock>
-  </div>
-</div>
-
+    <router-outlet name="sidenav"></router-outlet>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet name="content"></router-outlet>
+    <a   (click)="sidenav.toggle()">NEw COW</a>
+  </mat-sidenav-content>
+</mat-sidenav-container>

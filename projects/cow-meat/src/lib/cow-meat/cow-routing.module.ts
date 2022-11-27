@@ -1,27 +1,48 @@
-import {CommonModule} from "@angular/common";
-import {NgModule} from "@angular/core";
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
 import {
   RouterModule,
-  Routes,
-} from "@angular/router";
-import {CowMeatComponent} from "./cow-meat.component";
-import {CowMeatResolver} from "./util/service/cow-meat.resolver";
+  Routes
+} from '@angular/router';
+import {CowMeatComponent} from './cow-meat.component';
+import {CowMeatResolver} from './util/service/cow-meat.resolver';
 
 const routes : Routes = [
   {
-    path: "",
+    path: 'meat',
     component: CowMeatComponent,
-    resolve: {allData: CowMeatResolver},
+    children: [
+      {
+        path: 'prod',
+        outlet: 'content',
+        resolve: {allData: CowMeatResolver},
+        loadComponent: () => import('./components/dashboard/dashboard.component').then(
+          m => m.DashboardComponent)
+      },
+      {
+        path: 'new-cow',
+        outlet: 'sidenav',
+        resolve: {allData: CowMeatResolver},
+        loadComponent: () => import('./components/new-cow/new-cow.component').then(
+          c => c.NewCowComponent)
+      }
+    ]
   },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: '/cow/meat/(content:prod)'
+  }
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild(routes)
   ],
   exports: [
-    RouterModule,
-  ],
+    RouterModule
+  ]
 })
-export class CowRoutingModule {}
+export class CowRoutingModule {
+}

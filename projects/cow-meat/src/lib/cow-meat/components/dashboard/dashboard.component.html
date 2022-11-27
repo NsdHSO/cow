@@ -1,0 +1,35 @@
+
+<div class="cow-table-wrapper">
+  <elix-table
+    [dataSource]="dataSourceCow"
+    [lenghtPagination]="dataSourceCow.length"
+    [showPagination]="true"
+  >
+    <elix-column-text
+      [editRow]="true"
+      className="number"
+      field="numberFromEar"
+      name="Number Cow"
+    ></elix-column-text>
+    <elix-column-text
+      className="birth"
+      field="birth"
+      name="Birth"
+    ></elix-column-text>
+    <elix-column-text
+      [editRow]="true"
+      className="how-much-eats"
+      field="howMuchEats"
+      name="How Eats"
+    ></elix-column-text>
+    <elix-column-icon-action
+      className="action"
+      field="action"
+      name="ACTION FIELD"
+    ></elix-column-icon-action>
+  </elix-table>
+  <div>
+    <cow-profitability-clock></cow-profitability-clock>
+  </div>
+
+</div>
