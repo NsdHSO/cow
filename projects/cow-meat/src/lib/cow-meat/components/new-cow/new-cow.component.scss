@@ -1,0 +1,17 @@
+.tabs {
+  display: inline-block;
+  border-radius: 4px;
+  margin-top: 1em;
+  width: 100%;
+
+  .cdk-program-focused:not(.mat-tab-disabled) {
+    background: none;
+  }
+}
+
+.active-link {
+  color: #F20B22;
+  border: 0 solid purple;
+  border-bottom-width: 10px;
+  border-left: 10px none;
+}

@@ -24,7 +24,19 @@ const routes : Routes = [
         outlet: 'sidenav',
         resolve: {allData: CowMeatResolver},
         loadComponent: () => import('./components/new-cow/new-cow.component').then(
-          c => c.NewCowComponent)
+          c => c.NewCowComponent),
+        children: [
+          {
+            path: 'tab1',
+            loadComponent: () => import('./components/tab1/tab1.component').then(
+              c => c.Tab1Component)
+          },
+          {
+            path: 'tab2',
+            loadComponent: () => import('./components/tab2/tab2.component').then(
+              c => c.Tab2Component)
+          }
+        ]
       }
     ]
   },

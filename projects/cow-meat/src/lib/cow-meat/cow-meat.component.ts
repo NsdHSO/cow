@@ -11,13 +11,8 @@ import {
 } from '@angular/material/sidenav';
 import {
   ActivatedRoute,
-  NavigationEnd,
   Router
 } from '@angular/router';
-import {
-  BehaviorSubject,
-  filter
-} from 'rxjs';
 
 @Component({
   selector: 'lib-cow-meat',
@@ -34,7 +29,6 @@ export class CowMeatComponent implements AfterViewInit {
 
   ngAfterViewInit() : void {
     this.closeSidenav();
-    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(console.log)
   }
 
   public goToSidenav(sidenav : MatSidenav, path = 'new-cow') : void {
