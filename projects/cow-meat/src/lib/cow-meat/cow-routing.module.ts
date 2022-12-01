@@ -28,8 +28,8 @@ const routes : Routes = [
         children: [
           {
             path: 'tab1',
-            loadComponent: () => import('./components/tab1/tab1.component').then(
-              c => c.Tab1Component)
+            loadComponent: () => import('./components/tab1/new-entry.component').then(
+              c => c.NewEntryComponent)
           },
           {
             path: 'tab2',

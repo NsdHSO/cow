@@ -5,4 +5,11 @@ export interface ICow {
   age : number;
   numberOfLiveCattle : number;
   howMuchEats : number;
+  tel: string;
+  sex: Gender
+}
+
+export enum Gender {
+  MALE= 1,
+  FEMALE
 }

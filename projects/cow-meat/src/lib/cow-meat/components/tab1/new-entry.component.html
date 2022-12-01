@@ -1,0 +1,119 @@
+<div>
+  <form #form="ngForm"
+        (ngSubmit)="save()">
+    <div class="gap-3 row">
+      <div class="d-flex">
+        <div class="section col-6 gap-2">
+          <div class="col-3 text-end"> * Dam</div>
+          <div class="w-100">
+            <input
+              class="w-100"
+              type="text"
+              name="dam"
+              id="dam-cow"
+              [(ngModel)]="cow.number"
+              required
+              #name="ngModel"
+            >
+            <span class="text-danger"
+                  *ngIf="name.pristine"> Dam IT is pristine</span>
+            <span class="text-danger"
+                  *ngIf="name.touched && name.invalid  "> Dam IT is invalid</span>
+          </div>
+        </div>
+        <div class="section col-6 gap-2">
+          <div class="col-3 text-end"> Name</div>
+          <input class="w-100"
+                 type="text"
+                 name="name"
+                 id="name-cow">
+        </div>
+      </div>
+      <div class="d-flex">
+        <div class="section col-6 gap-2">
+          <div class="col-3 text-end"> * Birth</div>
+          <div class="w-100">
+            <mat-form-field appearance="fill">
+              <mat-label>Choose a date</mat-label>
+              <input matInput
+                     [matDatepicker]="picker"
+                     [(ngModel)]="cow.birth">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix
+                                     [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="section col-6 gap-2">
+          <div class="col-3 text-end"> Birth Weight</div>
+          <div class="w-100">
+            <input type="number"
+                   class="w-100"
+                   name="weight"
+                   id="weight-cow">
+          </div>
+        </div>
+      </div>
+      <div class="d-flex">
+        <div class="section col-6 gap-2">
+          <div class="col-3 text-end"> * Call Ear Tag</div>
+          <div class="w-100">
+            <input type="text"
+                   name="cow-tel"
+                   [(ngModel)]="cow.tel"
+                   libPhoneValidator
+                   mask="(000) 000-0000"
+                   #phone="ngModel"
+                   id="">
+            <span *ngIf="phone.touched && phone.errors?.phone">
+            TEsta
+          </span>
+          </div>
+        </div>
+        <div class="section col-6 gap-2">
+          <div class="col-3 text-end"> Calving Type</div>
+          <div>
+            !!!!!!!! DropDown
+          </div>
+        </div>
+      </div>
+      <div class="d-flex">
+        <div class="section col-6 gap-2">
+          <div class="col-3 text-end"> Breed</div>
+          <div>
+            !!!!!!!! DropDown
+          </div>
+        </div>
+        <div class="section col-6 gap-2">
+          <div class="col-3 text-end"> Calving Opeator</div>
+          <div>
+            !!!!Search BOx
+          </div>
+        </div>
+      </div>
+      <div class="d-flex">
+        <div class="section col-6 gap-2">
+          <div class="col-3 text-end"> * Sex</div>
+          <div class="col-4">
+            <mat-radio-group class="d-flex justify-content-between"
+                             [(ngModel)]="cow.sex">
+              <mat-radio-button class="example-margin"
+                                [value]="GenderCow.FEMALE">Female
+              </mat-radio-button>
+              <mat-radio-button class="example-margin"
+                                [value]="GenderCow.MALE">Male
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+    <button mat-button class="mat-button" (click)="cancel()" [disabled]="form.invalid">
+      Cancel
+    </button>
+    </div>
+  </form>
+</div>
+{{cow | json}}

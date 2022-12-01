@@ -1,13 +1,14 @@
-<p>new-cow works!</p>
-<nav mat-tab-nav-bar
-     class=" nav nav-tabs tabs">
-  <a mat-tab-link
-     routerLink="tab1"
-     routerLinkActive="active-link">Home</a>
-  <a mat-tab-link
-     routerLink="tab2"
-     routerLinkActive="active-link">Home2</a>
-</nav>
-<div>
-  <router-outlet></router-outlet>
+<div libIsScrolled class="container-cow">
+  <nav mat-tab-nav-bar
+       class=" nav nav-tabs tabs">
+    <a mat-tab-link
+       routerLink="tab1"
+       routerLinkActive="active-link">Home </a>
+    <a mat-tab-link
+       routerLink="tab2"
+       routerLinkActive="active-link">Home2</a>
+  </nav>
+  <div class="content p-4" >
+    <router-outlet></router-outlet>
+  </div>
 </div>

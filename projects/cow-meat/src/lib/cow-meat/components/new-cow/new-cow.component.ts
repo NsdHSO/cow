@@ -6,11 +6,15 @@ import {
   RouterLinkWithHref,
   RouterOutlet
 } from '@angular/router';
+import {CowMeatModule} from '../../cow-meat.module';
 
 @Component({
   selector: 'lib-new-cow',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLinkWithHref, MatTabsModule, RouterLinkActive],
+  imports: [
+    CommonModule, RouterOutlet, RouterLinkWithHref, MatTabsModule, RouterLinkActive,
+    CowMeatModule
+  ],
   templateUrl: './new-cow.component.html',
   styleUrls: ['./new-cow.component.scss']
 })

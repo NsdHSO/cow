@@ -9,12 +9,16 @@ import {
   SpinnerModule
 } from 'ngx-liburg-icon';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {IsScrolledDirective} from './components/tab1/is-scrolled.directive';
 import {CowMeatComponent} from './cow-meat.component';
 import {CowRoutingModule} from './cow-routing.module';
 
 @NgModule({
   declarations: [
-    CowMeatComponent
+    CowMeatComponent, IsScrolledDirective
+  ],
+  exports: [
+    IsScrolledDirective
   ],
   imports: [
     CowRoutingModule,
