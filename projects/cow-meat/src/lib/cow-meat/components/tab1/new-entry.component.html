@@ -1,6 +1,6 @@
 <div>
   <form #form="ngForm"
-        (ngSubmit)="save()">
+        (ngSubmit)="save(form)">
     <div class="gap-3 row">
       <div class="d-flex">
         <div class="section col-6 gap-2">
@@ -66,7 +66,7 @@
                    mask="(000) 000-0000"
                    #phone="ngModel"
                    id="">
-            <span *ngIf="phone.touched && phone.errors?.phone">
+            <span *ngIf="phone.touched && phone.errors &&phone.errors['phone']">
             TEsta
           </span>
           </div>
@@ -113,6 +113,9 @@
     <button mat-button class="mat-button" (click)="cancel()" [disabled]="form.invalid">
       Cancel
     </button>
+      <button mat-button class="mat-flat-button" [disabled]="!form.valid">
+        Save
+      </button>
     </div>
   </form>
 </div>

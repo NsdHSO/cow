@@ -33,8 +33,8 @@ const routes : Routes = [
           },
           {
             path: 'tab2',
-            loadComponent: () => import('./components/tab2/tab2.component').then(
-              c => c.Tab2Component)
+            loadComponent: () => import('./components/invoice/invoice.component').then(
+              c => c.InvoiceComponent)
           }
         ]
       }

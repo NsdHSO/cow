@@ -3,7 +3,10 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {
+  Form,
+  FormsModule
+} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
@@ -37,8 +40,10 @@ export class NewEntryComponent implements OnInit {
     return Gender
   }
 
-  public save() : void {
+  public save(form: any) : void {
+    console.log(form.value)
     throw new Error('Save is not implemented')
+
   }
 
   public cancel() : void {

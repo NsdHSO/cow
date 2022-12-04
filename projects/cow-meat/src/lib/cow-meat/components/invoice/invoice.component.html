@@ -1,0 +1,90 @@
+<form [formGroup]="invoiceForm"
+      (ngSubmit)="save()">
+  EDIT INVOICE
+  <div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Service</mat-label>
+      <input formControlName="service"
+             matInput
+             placeholder="Consulting COW"
+             value="consulting cow if she is pregnant">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill"
+                    formGroupName="date">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate
+               placeholder="Start date"
+               formControlName="startDate"
+        >
+        <input matEndDate
+               placeholder="End date"
+               formControlName="endDate"
+        >
+      </mat-date-range-input>
+      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix
+                             [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Hours</mat-label>
+      <input formControlName="hours"
+             type="number"
+             matInput
+             placeholder="150">
+    </mat-form-field>
+    <span *ngIf="invoiceForm.get('hours')?.touched && invoiceForm.get('hours')?.invalid ">
+        Hours is required
+      </span>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Rate</mat-label>
+      <input formControlName="rate"
+             type="number"
+             matInput
+             placeholder="50">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Customer</mat-label>
+      <mat-select formControlName="customer">
+        <mat-option *ngFor="let customer of customers | async as cust "
+                    [value]="customer.id">
+          {{customer.firstName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-slide-toggle formControlName="paid">Slide me!</mat-slide-toggle>
+  </div>
+  <div class="actions">
+    <button mat-button
+            class="btn-danger"
+            (click)="invoiceAction('Delete')"
+            *ngIf="invoice?.id">
+      Delete
+    </button>
+    <button mat-button
+            class="btn-danger"
+            (click)="invoiceAction('Cancel')">
+      Cancel
+    </button>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="invoiceForm.invalid">
+      Save
+    </button>
+  </div>
+</form>
+{{total}}
+{{invoiceForm.value | json}}
