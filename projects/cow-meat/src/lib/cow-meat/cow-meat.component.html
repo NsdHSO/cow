@@ -1,6 +1,6 @@
 <mat-sidenav-container class="h-100 container-cow"
                        *ngIf="true"
-                       [hasBackdrop]="false"
+                       [hasBackdrop]="true"
 >
   <mat-sidenav #sidenav
                [mode]="mode.value || 'over'"
@@ -10,6 +10,6 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet name="content"></router-outlet>
-    <a  #sidena  (click)="goToSidenav(sidenav)">NEw COW</a>
+    <a  #sidena  (click)="goToSidenav()">NEw COW</a>
   </mat-sidenav-content>
 </mat-sidenav-container>

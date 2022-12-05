@@ -3,7 +3,12 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {
+  ActivatedRoute,
+  Params,
+  QueryParamsHandling,
+  Router
+} from '@angular/router';
 import {
   DataSourceMaterialTable,
   IActionMaterialColumn,
@@ -19,6 +24,7 @@ import {
   ICow,
   StateCattle
 } from '../../util/interfaces';
+import {CowMeatService} from '../../util/service';
 import {DashboardService} from './util/dashboard.service';
 
 @Component({
@@ -34,8 +40,10 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private readonly _activateRouter : ActivatedRoute,
+    private readonly _router : Router,
     private readonly _spinerStateSerice : SpinnerService,
-    private readonly _dashboardService : DashboardService
+    private readonly _dashboardService : DashboardService,
+    private readonly _cowMeatService : CowMeatService
   ) { }
 
   ngOnInit() : void {
@@ -61,9 +69,15 @@ export class DashboardComponent implements OnInit {
     this.dataSourceCow = [newCow, ...this.dataSourceCow];
   }
 
-  public ngOnDestroy() : void {
-    this._destroyed$.next();
-    this._destroyed$.complete();
+  public goToSidenav(path = 'edit-cow', id : number) : void {
+    const query: Params = {
+      id: id
+    }
+
+    this._cowMeatService.sidenavNextValue({
+      path: path,
+      queryParam: query
+    });
   }
 
   private _emptyObjectOfCow() : ICow {
@@ -114,10 +128,15 @@ export class DashboardComponent implements OnInit {
         classCss: 'edit',
         method: (row : DataSourceMaterialTable<ICow>) => {
           if(!row.editable) {
-
+            this.goToSidenav('edit-cow', row.model.id);
           }
         }
       }
     ] as IActionMaterialColumn[];
+  }
+
+  public ngOnDestroy() : void {
+    this._destroyed$.next();
+    this._destroyed$.complete();
   }
 }

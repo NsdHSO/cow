@@ -5,14 +5,13 @@ import {
   ViewChild
 } from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {
-  MatDrawerMode,
-  MatSidenav
-} from '@angular/material/sidenav';
+import {MatDrawerMode} from '@angular/material/sidenav';
 import {
   ActivatedRoute,
+  Params,
   Router
 } from '@angular/router';
+import {CowMeatService} from './util/service';
 
 @Component({
   selector: 'lib-cow-meat',
@@ -25,15 +24,24 @@ export class CowMeatComponent implements AfterViewInit {
 
   constructor(
     private _router : Router,
-    private _route : ActivatedRoute) {}
+    private _route : ActivatedRoute,
+    private _cowMeatService : CowMeatService
+  ) {}
 
   ngAfterViewInit() : void {
     this.closeSidenav();
+    this._cowMeatService.sidenavData$.subscribe(nameSidenav => {
+      this.goToSidenav(nameSidenav.path, nameSidenav.queryParam);
+    });
   }
 
-  public goToSidenav(sidenav : MatSidenav, path = 'new-cow') : void {
-    sidenav.open();
-    this._router.navigate([{outlets: {sidenav: path}}], {relativeTo: this._route});
+  public goToSidenav(path = 'new-cow', idParams : Params = {}) : void {
+    this.sidenav.open();
+    this._router.navigate([{outlets: {sidenav: path}}], {
+      relativeTo: this._route,
+      queryParams: idParams,
+      queryParamsHandling:'merge'
+    });
   }
 
   @HostListener('keyup', ['$event'])

@@ -28,7 +28,7 @@ const routes : Routes = [
             route: [
               {
                 name: 'Home',
-                path: 'tab1'
+                path: ''
               },
               {
                 name: 'Home2',
@@ -41,7 +41,7 @@ const routes : Routes = [
           c => c.NewCowComponent),
         children: [
           {
-            path: 'tab1',
+            path: '',
             loadComponent: () => import('./components/tab1/new-entry.component').then(
               c => c.NewEntryComponent)
           },
@@ -59,8 +59,8 @@ const routes : Routes = [
           config: {
             route: [
               {
-                name: 'Home',
-                path: 'edit'
+                name: 'Edit',
+                path: ''
               }
             ]
           }
@@ -69,10 +69,10 @@ const routes : Routes = [
           c => c.NewCowComponent),
         children: [
           {
-            path: 'edit',
-            loadComponent: () => import('./components/tab1/new-entry.component').then(
-              c => c.NewEntryComponent)
-          },
+            path: '',
+            loadComponent: () => import('./components/edit/edit.component').then(
+              c => c.EditComponent)
+          }
         ]
       }
     ]

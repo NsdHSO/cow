@@ -29,6 +29,6 @@ export class NewCowComponent implements OnInit {
   constructor(private readonly _activateRouter : ActivatedRoute) { }
 
   ngOnInit() : void {
-    this.tabs$ = this._activateRouter.data.pipe(map(t => t['config'].route))
+    this.tabs$ = this._activateRouter.data.pipe(map(data => data['config'].route))
   }
 }
