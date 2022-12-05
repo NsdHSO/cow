@@ -4,6 +4,8 @@
     [dataSource]="dataSourceCow"
     [lenghtPagination]="dataSourceCow.length"
     [showPagination]="true"
+    [addedNewEntry]="true"
+    (onAddEntry)="addedNewCow()"
   >
     <elix-column-text
       [editRow]="true"

@@ -23,6 +23,20 @@ const routes : Routes = [
         path: 'new-cow',
         outlet: 'sidenav',
         resolve: {allData: CowMeatResolver},
+        data: {
+          config: {
+            route: [
+              {
+                name: 'Home',
+                path: 'tab1'
+              },
+              {
+                name: 'Home2',
+                path: 'tab2'
+              }
+            ]
+          }
+        },
         loadComponent: () => import('./components/new-cow/new-cow.component').then(
           c => c.NewCowComponent),
         children: [
@@ -36,6 +50,29 @@ const routes : Routes = [
             loadComponent: () => import('./components/invoice/invoice.component').then(
               c => c.InvoiceComponent)
           }
+        ]
+      },
+      {
+        path: 'edit-cow',
+        outlet: 'sidenav',
+        data: {
+          config: {
+            route: [
+              {
+                name: 'Home',
+                path: 'edit'
+              }
+            ]
+          }
+        },
+        loadComponent: () => import('./components/new-cow/new-cow.component').then(
+          c => c.NewCowComponent),
+        children: [
+          {
+            path: 'edit',
+            loadComponent: () => import('./components/tab1/new-entry.component').then(
+              c => c.NewEntryComponent)
+          },
         ]
       }
     ]

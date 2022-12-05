@@ -1,11 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 import {MatTabsModule} from '@angular/material/tabs';
 import {
+  ActivatedRoute,
   RouterLinkActive,
   RouterLinkWithHref,
   RouterOutlet
 } from '@angular/router';
+import {map} from 'rxjs';
 import {CowMeatModule} from '../../cow-meat.module';
 
 @Component({
@@ -19,10 +24,11 @@ import {CowMeatModule} from '../../cow-meat.module';
   styleUrls: ['./new-cow.component.scss']
 })
 export class NewCowComponent implements OnInit {
+  tabs$ : any;
 
-  constructor() { }
+  constructor(private readonly _activateRouter : ActivatedRoute) { }
 
-  ngOnInit(): void {
+  ngOnInit() : void {
+    this.tabs$ = this._activateRouter.data.pipe(map(t => t['config'].route))
   }
-
 }
