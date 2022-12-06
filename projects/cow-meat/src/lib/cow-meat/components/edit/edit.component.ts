@@ -32,13 +32,16 @@ import {
 } from '../../util/interfaces';
 import {CowMeatService} from '../../util/service';
 import {DashboardService} from '../dashboard/util/dashboard.service';
+import {IsNotEmpty} from '../invoice/util';
 
 @Component({
   selector: 'lib-edit',
   standalone: true,
   imports: [
-    CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule,
-    MatDatepickerModule, MatSelectModule, MatButtonModule
+    CommonModule, ReactiveFormsModule,
+    MatFormFieldModule, MatInputModule,
+    MatDatepickerModule,
+    MatSelectModule, MatButtonModule
   ],
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
@@ -54,30 +57,35 @@ export class EditComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private readonly _activateRouter : ActivatedRoute, private _cowMeatService : CowMeatService,
+    private readonly _activateRouter : ActivatedRoute,
+    private _cowMeatService : CowMeatService,
     private readonly _formBuilder : FormBuilder,
     private readonly _dashboardService : DashboardService
   ) {
-    this.cowForm = this._formBuilder.group({
-      id: [''],
-      numberFromEar: ['', Validators.required],
-      kg: [''],
-      birth: [''],
-      age: [''],
-      numberOfLiveCattle: [''],
-      howMuchEats: [''],
-      tel: [''],
-      state: [''],
-      group: [''],
-      gynecologicalStatus: [''],
-      gender: ['']
-    });
+    this.cowForm = this._formBuilder.group(
+      {
+        id: [''],
+        numberFromEar: [
+          '', [Validators.required, IsNotEmpty]
+        ],
+        kg: [''],
+        birth: [''],
+        age: [''],
+        numberOfLiveCattle: [''],
+        howMuchEats: [''],
+        tel: [''],
+        state: [''],
+        group: [''],
+        gynecologicalStatus: [''],
+        gender: ['']
+      });
   }
 
   ngOnInit() : void {
     this.cow = this._activateRouter.queryParams.pipe(
-      takeUntil(this._destroyed$), switchMap(data => {
-        return this._cowMeatService.getCowById(+data['cowId']);
+      switchMap(data => {
+        return this._cowMeatService.getCowById(
+          +data['cowId']);
       }),
       switchMap((data : any) => {
         this.stateCattle$ = this._cowMeatService.getStateCattle();
@@ -89,18 +97,26 @@ export class EditComponent implements OnInit, OnDestroy {
             .format();
           this.cowForm.patchValue(cow);
         }
-      }));
+      })
+    );
   }
 
   public sendData(event : any) {
     if(this.cowForm.valid) {
       this.cowForm.get('birth')
-        ?.patchValue(moment(this.cowForm.get('birth')?.value)
+        ?.patchValue(moment(
+          this.cowForm.get(
+            'birth')?.value)
           .format('DD/MM/YYYY'));
-      this._dashboardService.updatedCow(this.cowForm.value)
-        .pipe(switchMap(data => this._cowMeatService.getCow()))
+      this._dashboardService.updatedCow(
+        this.cowForm.value)
+        .pipe(
+          switchMap(
+            data => this._cowMeatService.getCows())
+        )
         .subscribe();
-      this._cowMeatService.sendDateCloseSidenav(true);
+      this._cowMeatService.sendDateCloseSidenav(
+        true);
     }
   }
 

@@ -26,7 +26,7 @@ export enum Gender {
 }
 
 export interface IStateCattle {
-  state: string
+  state: StateOfCattle
 }
 
 export enum StateCattle {

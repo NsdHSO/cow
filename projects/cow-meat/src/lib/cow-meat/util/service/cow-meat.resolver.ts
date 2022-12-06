@@ -15,6 +15,6 @@ export class CowMeatResolver implements Resolve<ICow[]> {
   constructor(private readonly _cowMeatService : CowMeatService) {}
 
   resolve(route : ActivatedRouteSnapshot, state : RouterStateSnapshot) : any {
-    this._cowMeatService.getCow().subscribe();
+    this._cowMeatService.getCows().subscribe();
   }
 }

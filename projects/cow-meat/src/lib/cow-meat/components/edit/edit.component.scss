@@ -1,0 +1,13 @@
+:host {
+  height: 100%;
+}
+
+.form-content {
+  // Small devices (landscape phones, 36rem and up)
+  &__items {
+    @media (max-width: 26.5625rem) {
+      flex-direction: column;
+      overflow-y: scroll;
+    }
+  }
+}

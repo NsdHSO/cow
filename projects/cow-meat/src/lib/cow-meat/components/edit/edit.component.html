@@ -1,9 +1,9 @@
-<div *ngIf="cow | async as cowByID; else loading">
+<div *ngIf="cow | async as cowByID; else loading" class="h-100">
   <form [formGroup]="cowForm"
         (ngSubmit)="sendData($event)"
-        class="gap-5 d-flex justify-content-around">
+        class="gap-5 d-flex justify-content-around h-100 form-content">
     <div class="w-100">
-      <div class="d-flex gap-4">
+      <div class="d-flex gap-4 h-100 form-content__items">
         <div class="d-flex flex-column w-100 gap-3">
           <mat-form-field class="example-full-width">
             <mat-label>Number From Ear</mat-label>
@@ -24,7 +24,7 @@
             <input matInput
                    [matDatepicker]="picker"
                    formControlName="birth"
-              >
+            >
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix
                                    [for]="picker"></mat-datepicker-toggle>
@@ -63,7 +63,8 @@
           <mat-form-field appearance="fill">
             <mat-label>State Of Cattle</mat-label>
             <mat-select formControlName="state">
-              <mat-option *ngFor="let stateC of (stateCattle$ | async)" [value]="stateC.state">{{stateC.state}}</mat-option>
+              <mat-option *ngFor="let stateC of (stateCattle$ | async)"
+                          [value]="stateC.state">{{stateC.state}}</mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field class="example-full-width">
@@ -90,10 +91,11 @@
         </div>
       </div>
       <div>
-        <button type="submit"
+        <button class="w-100"
+                type="submit"
                 color="accent"
                 mat-raised-button
-                [disabled]="!cowForm.valid && cowForm.pristine && cowForm.untouched">
+                [disabled]="cowForm.invalid && cowForm.untouched ">
           Save
         </button>
       </div>

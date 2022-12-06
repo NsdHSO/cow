@@ -19,3 +19,10 @@ export interface Customer {
   lastName : string;
   address : string;
 }
+
+export function IsNotEmpty(control : AbstractControl) {
+  return control.value && control.value !== 0
+    ? null
+    : {hours: true};
+}
+

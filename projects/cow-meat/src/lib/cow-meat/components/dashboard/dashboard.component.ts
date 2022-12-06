@@ -110,7 +110,7 @@ export class DashboardComponent implements OnInit {
           if(!row.editable) {
             this._dashboardService.addedNewCow(row.model)
               .pipe(
-                switchMap(data => this._cowMeatService.getCow()),
+                switchMap(data => this._cowMeatService.getCows()),
                 takeUntil(this._destroyed$))
               .subscribe();
           }

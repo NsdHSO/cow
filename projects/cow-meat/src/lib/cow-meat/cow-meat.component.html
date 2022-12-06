@@ -1,6 +1,6 @@
 <mat-sidenav-container class="h-100 container-cow"
                        *ngIf="true"
-                       [hasBackdrop]="true"
+                       (backdropClick)="destroySidenav()"
 >
   <mat-sidenav #sidenav
                [mode]="mode.value || 'over'"

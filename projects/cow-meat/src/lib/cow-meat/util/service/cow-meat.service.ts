@@ -41,7 +41,7 @@ export class CowMeatService {
     this._closeSidenav.next(value);
   }
 
-  public getCow() : Observable<ICow[]> {
+  public getCows() : Observable<ICow[]> {
     return this._httpClient.get<ICow[]>(`${this.environment.api}/cow/meat`)
       .pipe(
         map(data => {
