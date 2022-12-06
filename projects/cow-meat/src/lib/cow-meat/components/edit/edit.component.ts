@@ -16,13 +16,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {ActivatedRoute} from '@angular/router';
-import * as moment from 'moment';
+import * as moment_ from 'moment';
 import {
   Observable,
   of,
   Subject,
   switchMap,
-  takeUntil,
   tap
 } from 'rxjs';
 import {
@@ -33,6 +32,8 @@ import {
 import {CowMeatService} from '../../util/service';
 import {DashboardService} from '../dashboard/util/dashboard.service';
 import {IsNotEmpty} from '../invoice/util';
+
+const moment = moment_;
 
 @Component({
   selector: 'lib-edit',
@@ -66,7 +67,10 @@ export class EditComponent implements OnInit, OnDestroy {
       {
         id: [''],
         numberFromEar: [
-          '', [Validators.required, IsNotEmpty]
+          '', [
+            Validators.required,
+            IsNotEmpty
+          ]
         ],
         kg: [''],
         birth: [''],

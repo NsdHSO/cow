@@ -8,7 +8,7 @@ import {
   Params,
   Router
 } from '@angular/router';
-import * as moment from 'moment/moment';
+import * as moment_ from 'moment';
 import {
   DataSourceMaterialTable,
   IActionMaterialColumn,
@@ -28,10 +28,15 @@ import {
 import {CowMeatService} from '../../util/service';
 import {DashboardService} from './util/dashboard.service';
 
+const moment = moment_;
+
 @Component({
   selector: 'lib-dashboard',
   standalone: true,
-  imports: [CommonModule, TableMaterialModule, ProfitabilityClockComponent],
+  imports: [
+    CommonModule, TableMaterialModule,
+    ProfitabilityClockComponent
+  ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
@@ -48,20 +53,23 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() : void {
-    this._cowMeatService.cowData$.pipe(takeUntil(this._destroyed$))
+    this._cowMeatService.cowData$.pipe(
+      takeUntil(this._destroyed$))
       .subscribe((data : ICow[]) => {
         debugger
-        this.dataSourceCow = data.map((cow : ICow) => {
-          this._spinerStateSerice.sendValue(true);
-          const model = <ICow> cow;
-          return {
-            actions: this._actionTableListCow(),
-            editable: false,
-            model: {
-              ...model
-            }
-          } as DataSourceMaterialTable<any>;
-        });
+        this.dataSourceCow = data.map(
+          (cow : ICow) => {
+            this._spinerStateSerice.sendValue(
+              true);
+            const model = <ICow> cow;
+            return {
+              actions: this._actionTableListCow(),
+              editable: false,
+              model: {
+                ...model
+              }
+            } as DataSourceMaterialTable<any>;
+          });
       });
   }
 
@@ -71,17 +79,22 @@ export class DashboardComponent implements OnInit {
       editable: false,
       model: this._emptyObjectOfCow()
     };
-    this.dataSourceCow = [newCow, ...this.dataSourceCow];
+    this.dataSourceCow = [
+      newCow, ...this.dataSourceCow
+    ];
   }
 
-  public goToSidenav(path = 'edit-cow', id : number) : void {
+  public goToSidenav(
+    path = 'edit-cow',
+    id : number) : void {
     const query : Params = {
       cowId: id
     };
-    this._cowMeatService.sidenavNextValue({
-      path: path,
-      queryParam: query
-    });
+    this._cowMeatService.sidenavNextValue(
+      {
+        path: path,
+        queryParam: query
+      });
   }
 
   private _emptyObjectOfCow() : ICow {
@@ -108,10 +121,14 @@ export class DashboardComponent implements OnInit {
         method: (row : DataSourceMaterialTable<ICow>) => {
           row.editable = !row.editable;
           if(!row.editable) {
-            this._dashboardService.addedNewCow(row.model)
+            this._dashboardService.addedNewCow(
+              row.model)
               .pipe(
-                switchMap(data => this._cowMeatService.getCows()),
-                takeUntil(this._destroyed$))
+                switchMap(
+                  data => this._cowMeatService.getCows()),
+                takeUntil(
+                  this._destroyed$)
+              )
               .subscribe();
           }
         }
@@ -127,8 +144,10 @@ export class DashboardComponent implements OnInit {
         method: (row : DataSourceMaterialTable<ICow>) => {
           row.editable = !row.editable;
           if(!row.editable) {
-            this._dashboardService.updatedCow(row.model)
-              .pipe(takeUntil(this._destroyed$))
+            this._dashboardService.updatedCow(
+              row.model)
+              .pipe(takeUntil(
+                this._destroyed$))
               .subscribe();
           }
         }
@@ -138,7 +157,8 @@ export class DashboardComponent implements OnInit {
         classCss: 'edit',
         method: (row : DataSourceMaterialTable<ICow>) => {
           if(!row.editable) {
-            this.goToSidenav('edit-cow', row.model.id);
+            this.goToSidenav(
+              'edit-cow', row.model.id);
           }
         }
       }

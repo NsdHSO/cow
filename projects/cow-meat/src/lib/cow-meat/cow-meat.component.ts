@@ -71,7 +71,8 @@ export class CowMeatComponent implements AfterViewInit, OnDestroy {
   }
 
   public toggle() {
-    this._cowMeatService.closeSide$
+    this._cowMeatService.closeSide$.pipe(
+      takeUntil(this._destroyed$))
       .subscribe(
         d => {
           if(d) {
@@ -79,12 +80,12 @@ export class CowMeatComponent implements AfterViewInit, OnDestroy {
               [{outlets: {sidenav: null}}],
               {relativeTo: this._route}
             );
-            this.sidenav.toggle()
+            this.sidenav.toggle();
           }
         });
   }
 
-  public destroySidenav(){
+  public destroySidenav() {
     this._router.navigate(
       [{outlets: {sidenav: null}}],
       {relativeTo: this._route}
