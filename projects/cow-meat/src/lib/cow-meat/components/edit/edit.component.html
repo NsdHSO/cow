@@ -60,12 +60,11 @@
                    placeholder="2"
             >
           </mat-form-field>
-          <mat-form-field class="example-full-width">
+          <mat-form-field appearance="fill">
             <mat-label>State Of Cattle</mat-label>
-            <input formControlName="state"
-                   matInput
-                   placeholder="Early"
-            >
+            <mat-select formControlName="state">
+              <mat-option *ngFor="let stateC of (stateCattle$ | async)" [value]="stateC.state">{{stateC.state}}</mat-option>
+            </mat-select>
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>Group</mat-label>

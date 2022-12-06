@@ -25,6 +25,10 @@ export enum Gender {
   FEMALE
 }
 
+export interface IStateCattle {
+  state: string
+}
+
 export enum StateCattle {
   'EARLY' = 'Early',
   'CALF' = 'Calf',

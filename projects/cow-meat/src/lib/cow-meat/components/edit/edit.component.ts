@@ -19,6 +19,7 @@ import {ActivatedRoute} from '@angular/router';
 import * as moment from 'moment';
 import {
   Observable,
+  of,
   Subject,
   switchMap,
   takeUntil,
@@ -26,7 +27,8 @@ import {
 } from 'rxjs';
 import {
   Gender,
-  ICow
+  ICow,
+  IStateCattle
 } from '../../util/interfaces';
 import {CowMeatService} from '../../util/service';
 import {DashboardService} from '../dashboard/util/dashboard.service';
@@ -44,6 +46,7 @@ import {DashboardService} from '../dashboard/util/dashboard.service';
 export class EditComponent implements OnInit, OnDestroy {
   public cow : Observable<ICow> | undefined;
   cowForm : FormGroup;
+  public stateCattle$ : Observable<IStateCattle[]> | undefined;
   private _destroyed$ : Subject<void> = new Subject<void>();
 
   get Gender() : typeof Gender {
@@ -75,10 +78,15 @@ export class EditComponent implements OnInit, OnDestroy {
     this.cow = this._activateRouter.queryParams.pipe(
       takeUntil(this._destroyed$), switchMap(data => {
         return this._cowMeatService.getCowById(+data['cowId']);
-      }), tap(cow => {
+      }),
+      switchMap((data : any) => {
+        this.stateCattle$ = this._cowMeatService.getStateCattle();
+        return of(data);
+      }),
+      tap((cow : any) => {
         if(cow) {
-          cow.birth = moment(cow.birth).format()
-          console.log(cow)
+          cow.birth = moment(cow.birth)
+            .format();
           this.cowForm.patchValue(cow);
         }
       }));
@@ -88,7 +96,7 @@ export class EditComponent implements OnInit, OnDestroy {
     if(this.cowForm.valid) {
       this.cowForm.get('birth')
         ?.patchValue(moment(this.cowForm.get('birth')?.value)
-          .format('MM/DD/YYYY'));
+          .format('DD/MM/YYYY'));
       this._dashboardService.updatedCow(this.cowForm.value)
         .pipe(switchMap(data => this._cowMeatService.getCow()))
         .subscribe();
