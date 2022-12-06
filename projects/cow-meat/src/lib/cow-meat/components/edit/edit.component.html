@@ -1,1 +1,106 @@
-<p>edit works!</p>
+<div *ngIf="cow | async as cowByID; else loading">
+  <form [formGroup]="cowForm"
+        (ngSubmit)="sendData($event)"
+        class="gap-5 d-flex justify-content-around">
+    <div class="w-100">
+      <div class="d-flex gap-4">
+        <div class="d-flex flex-column w-100 gap-3">
+          <mat-form-field class="example-full-width">
+            <mat-label>Number From Ear</mat-label>
+            <input formControlName="numberFromEar"
+                   matInput
+                   placeholder="212"
+            >
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Kg</mat-label>
+            <input formControlName="kg"
+                   matInput
+                   placeholder="20"
+            >
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input matInput
+                   [matDatepicker]="picker"
+                   formControlName="birth"
+              >
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix
+                                   [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Age</mat-label>
+            <input formControlName="age"
+                   matInput
+                   placeholder="52"
+            >
+          </mat-form-field>
+        </div>
+        <div class="flex-column d-flex w-100 gap-3">
+          <mat-form-field class="example-full-width">
+            <mat-label>Number Of Live Cattle</mat-label>
+            <input formControlName="numberOfLiveCattle"
+                   matInput
+                   placeholder="2"
+            >
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>How much eats</mat-label>
+            <input formControlName="howMuchEats"
+                   matInput
+                   placeholder="2"
+            >
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Tel</mat-label>
+            <input formControlName="tel"
+                   matInput
+                   placeholder="2"
+            >
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>State Of Cattle</mat-label>
+            <input formControlName="state"
+                   matInput
+                   placeholder="Early"
+            >
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Group</mat-label>
+            <input formControlName="group"
+                   matInput
+                   placeholder="2"
+            >
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Gynecological Status</mat-label>
+            <input formControlName="gynecologicalStatus"
+                   matInput
+                   placeholder="Verified"
+            >
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Select</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option [value]="Gender.FEMALE">Female</mat-option>
+              <mat-option [value]="Gender.MALE">Male</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <button type="submit"
+                color="accent"
+                mat-raised-button
+                [disabled]="!cowForm.valid && cowForm.pristine && cowForm.untouched">
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<ng-template #loading>
+  Loading
+</ng-template>

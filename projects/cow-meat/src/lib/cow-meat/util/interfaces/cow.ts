@@ -2,7 +2,7 @@ export interface ICow {
   id : number;
   numberFromEar : number;
   kg : number;
-  birth : number;
+  birth : any;
   age : number;
   numberOfLiveCattle : number;
   howMuchEats : number;
@@ -10,7 +10,7 @@ export interface ICow {
   state : StateOfCattle;
   group : number;
   gynecologicalStatus : GynecologicalStatus;
-  sex : Gender;
+  gender : Gender;
 }
 
 type StateOfCattle =

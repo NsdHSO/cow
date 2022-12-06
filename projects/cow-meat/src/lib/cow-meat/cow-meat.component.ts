@@ -33,6 +33,8 @@ export class CowMeatComponent implements AfterViewInit {
     this._cowMeatService.sidenavData$.subscribe(nameSidenav => {
       this.goToSidenav(nameSidenav.path, nameSidenav.queryParam);
     });
+
+    this.toggle()
   }
 
   public goToSidenav(path = 'new-cow', idParams : Params = {}) : void {
@@ -40,7 +42,7 @@ export class CowMeatComponent implements AfterViewInit {
     this._router.navigate([{outlets: {sidenav: path}}], {
       relativeTo: this._route,
       queryParams: idParams,
-      queryParamsHandling:'merge'
+      queryParamsHandling: 'merge'
     });
   }
 
@@ -56,5 +58,14 @@ export class CowMeatComponent implements AfterViewInit {
     if(url) {
       this.sidenav.open();
     }
+  }
+
+  private toggle() {
+    this._cowMeatService.closeSide$.subscribe(d => {
+      if(d){
+        this._router.navigate([{outlets: {sidenav: null}}], {relativeTo: this._route});
+      }
+      this.sidenav.toggle();
+    });
   }
 }

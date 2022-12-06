@@ -82,11 +82,6 @@ export class InvoiceComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
   }
 
-  public ngOnDestroy() : void {
-    this._destroyed$.next();
-    this._destroyed$.complete();
-  }
-
   public save() : void {
     let invoice = {} as InvoiceType;
     invoice.userId = 1;
@@ -130,5 +125,10 @@ export class InvoiceComponent implements OnInit, AfterViewInit, OnDestroy {
           throw new Error('Service For get invoice are implemented');
         }
       });
+  }
+
+  public ngOnDestroy() : void {
+    this._destroyed$.next();
+    this._destroyed$.complete();
   }
 }

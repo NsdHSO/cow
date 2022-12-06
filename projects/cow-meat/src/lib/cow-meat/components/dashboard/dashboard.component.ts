@@ -6,9 +6,9 @@ import {
 import {
   ActivatedRoute,
   Params,
-  QueryParamsHandling,
   Router
 } from '@angular/router';
+import * as moment from 'moment/moment';
 import {
   DataSourceMaterialTable,
   IActionMaterialColumn,
@@ -18,6 +18,7 @@ import {SpinnerService} from 'ngx-liburg-icon';
 import {ProfitabilityClockComponent} from 'projects/cow-meat/src/public-api';
 import {
   Subject,
+  switchMap,
   takeUntil
 } from 'rxjs';
 import {
@@ -47,33 +48,36 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() : void {
-    this.dataSourceCow = this._activateRouter.snapshot.data['allData'].map((cow : ICow) => {
-      this._spinerStateSerice.sendValue(true);
-      const model = <ICow> cow;
-      return {
-        actions: this._actionTableListCow(),
-        editable: false,
-        model: {
-          ...model
-        }
-      } as DataSourceMaterialTable<any>;
-    });
+    this._cowMeatService.cowData$.pipe(takeUntil(this._destroyed$))
+      .subscribe((data : ICow[]) => {
+        debugger
+        this.dataSourceCow = data.map((cow : ICow) => {
+          this._spinerStateSerice.sendValue(true);
+          const model = <ICow> cow;
+          return {
+            actions: this._actionTableListCow(),
+            editable: false,
+            model: {
+              ...model
+            }
+          } as DataSourceMaterialTable<any>;
+        });
+      });
   }
 
   public addedNewCow() : void {
     const newCow = {
       actions: this._newCowAction(),
-      editable: true,
+      editable: false,
       model: this._emptyObjectOfCow()
     };
     this.dataSourceCow = [newCow, ...this.dataSourceCow];
   }
 
   public goToSidenav(path = 'edit-cow', id : number) : void {
-    const query: Params = {
-      id: id
-    }
-
+    const query : Params = {
+      cowId: id
+    };
     this._cowMeatService.sidenavNextValue({
       path: path,
       queryParam: query
@@ -84,13 +88,15 @@ export class DashboardComponent implements OnInit {
     return {
       numberFromEar: 0,
       kg: 0,
-      birth: 0,
+      birth: moment(new Date())
+        .format('DD/MM/YYYY'),
       howMuchEats: 0,
       numberOfLiveCattle: 0,
       age: 1,
       state: StateCattle.EARLY,
       group: 0,
-      gynecologicalStatus: 'Verified'
+      gynecologicalStatus: 'Verified',
+      gender: 1
     } as ICow;
   }
 
@@ -101,9 +107,13 @@ export class DashboardComponent implements OnInit {
         classCss: 'edit',
         method: (row : DataSourceMaterialTable<ICow>) => {
           row.editable = !row.editable;
-          this._dashboardService.addedNewCow(row.model)
-            .pipe(takeUntil(this._destroyed$))
-            .subscribe();
+          if(!row.editable) {
+            this._dashboardService.addedNewCow(row.model)
+              .pipe(
+                switchMap(data => this._cowMeatService.getCow()),
+                takeUntil(this._destroyed$))
+              .subscribe();
+          }
         }
       }
     ] as IActionMaterialColumn[];
