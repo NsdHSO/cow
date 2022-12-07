@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CoreCowModule} from 'projects/cow-meat/src/lib/cow-meat/core-cow.module';
+import { CoreCowModule } from 'dist/cow-meat/public-api';
 
 @NgModule({
             declarations: [],

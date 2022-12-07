@@ -40,8 +40,8 @@ export class HttpInterceptorService implements HttpInterceptor {
     return this._httpClient.post(
       `${this.environment.api}/elien/login`,
       {
-        "password": "passworsd3",
-        "name": "Mihai Buncss111i"
+        "password": "password",
+        "name": "solution"
       })
   }
 }

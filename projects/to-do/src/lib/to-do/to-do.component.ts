@@ -1,28 +1,28 @@
 import {
   CdkDragDrop,
-  moveItemInArray,
-} from "@angular/cdk/drag-drop";
+  moveItemInArray
+} from '@angular/cdk/drag-drop';
 import {
   Component,
   HostListener,
   OnDestroy,
-  OnInit,
-} from "@angular/core";
+  OnInit
+} from '@angular/core';
 import {
   Subject,
-  takeUntil,
-} from "rxjs";
-import {IToDo} from "./util/IToDo";
-import {ToDoService} from "./util/to-do.service";
+  takeUntil
+} from 'rxjs';
+import {IToDo} from './util/IToDo';
+import {ToDoService} from './util/to-do.service';
 
 @Component({
-  selector: "lib-to-do",
-  templateUrl: "./to-do.component.html",
-  styleUrls: ["./to-do.component.scss"],
+  selector: 'lib-to-do',
+  templateUrl: './to-do.component.html',
+  styleUrls: ['./to-do.component.scss']
 })
 export class ToDoComponent implements OnInit, OnDestroy {
   todos = [] as IToDo[];
-  description = "";
+  description = '';
   private $destroyed : Subject<any> = new Subject<any>();
 
   constructor(private readonly _toDoService : ToDoService) { }
@@ -40,20 +40,14 @@ export class ToDoComponent implements OnInit, OnDestroy {
     this._toDoService.makeAction($event);
   }
 
-  public ngOnDestroy() : void {
-    this.$destroyed.next({});
-    this.$destroyed.complete();
-  }
-
   public setDescription($event : string) : void {
     this._toDoService.description = $event;
   }
 
-  @HostListener("keydown", ["$event"]) onKeyDown(e : any) {
+  @HostListener('keydown', ['$event']) onKeyDown(e : any) {
     if((e.keyCode == 91 && e.keyCode == 13) || e.keyCode == 13) {
       this.saveToDo();
-      this.description = "";
-      debugger
+      this.description = '';
     }
   }
 
@@ -63,5 +57,10 @@ export class ToDoComponent implements OnInit, OnDestroy {
 
   public drop($event : CdkDragDrop<string[]>) : void {
     moveItemInArray(this.todos, $event.previousIndex, $event.currentIndex);
+  }
+
+  public ngOnDestroy() : void {
+    this.$destroyed.next({});
+    this.$destroyed.complete();
   }
 }

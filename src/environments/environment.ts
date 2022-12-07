@@ -4,8 +4,13 @@
 
 export const environment = {
   production: false,
-  api: "http://localhost:3000"
-
+  api: "http://localhost:3000",
+  apiProducts: "http://localhost:3001",
+  featureFlags: {
+    product: true,
+    dashboard: true,
+    email: true
+  }
 };
 
 /*
