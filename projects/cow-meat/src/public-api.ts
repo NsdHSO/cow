@@ -4,7 +4,20 @@
 export *
   from './lib/cow-meat/cow-meat.component';
 export *
+  from './lib/cow-meat/core-cow.module';
+export * from
+    './lib/cow-meat/cow-routing.module';
+export * from
+    './lib/cow-meat/cow-meat.module';
+export * from './lib/cow-meat/util/interfaces/'
+export *
+  from './lib/cow-meat/util/phone-validator.directive';
+export *
   from './lib/cow-meat/components/dashboard/dashboard.component';
+export *
+  from './lib/cow-meat/components/dashboard/util/dashboard.service'
+export *
+  from './lib/cow-meat/components/dashboard/util/dashboard.api.service'
 export *
   from './lib/cow-meat/components/new-cow/new-cow.component';
 export *
@@ -22,14 +35,12 @@ export *
 export *
   from './lib/cow-meat/components/edit/edit.component';
 export *
-  from './lib/cow-meat/cow-meat.module';
-export *
   from './lib/cow-meat/util/service/cow-meat.service';
 export *
   from './lib/cow-meat/util/service/cow-meat.resolver';
 export *
-  from './lib/cow-meat/core-cow.module';
-export *
   from './lib/cow-meat/components/profitability-clock/profitability-clock.component';
 export *
   from './lib/cow-meat/components/tab1/is-scrolled.directive';
+
+
