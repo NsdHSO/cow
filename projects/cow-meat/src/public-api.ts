@@ -9,15 +9,16 @@ export * from
     './lib/cow-meat/cow-routing.module';
 export * from
     './lib/cow-meat/cow-meat.module';
-export * from './lib/cow-meat/util/interfaces/'
+export *
+  from './lib/cow-meat/util/interfaces/cow';
 export *
   from './lib/cow-meat/util/phone-validator.directive';
 export *
   from './lib/cow-meat/components/dashboard/dashboard.component';
 export *
-  from './lib/cow-meat/components/dashboard/util/dashboard.service'
+  from './lib/cow-meat/components/dashboard/util/dashboard.service';
 export *
-  from './lib/cow-meat/components/dashboard/util/dashboard.api.service'
+  from './lib/cow-meat/components/dashboard/util/dashboard.api.service';
 export *
   from './lib/cow-meat/components/new-cow/new-cow.component';
 export *

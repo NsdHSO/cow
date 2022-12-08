@@ -15,7 +15,6 @@ import {
   TableMaterialModule
 } from 'ngx-liburg';
 import {SpinnerService} from 'ngx-liburg-icon';
-import {ProfitabilityClockComponent} from 'projects/cow-meat/src/public-api';
 import {
   Subject,
   switchMap,
@@ -26,6 +25,7 @@ import {
   StateCattle
 } from '../../util/interfaces';
 import {CowMeatService} from '../../util/service';
+import { ProfitabilityClockComponent } from '../profitability-clock/profitability-clock.component';
 import {DashboardService} from './util/dashboard.service';
 
 const moment = moment_;
@@ -56,7 +56,6 @@ export class DashboardComponent implements OnInit {
     this._cowMeatService.cowData$.pipe(
       takeUntil(this._destroyed$))
       .subscribe((data : ICow[]) => {
-        debugger
         this.dataSourceCow = data.map(
           (cow : ICow) => {
             this._spinerStateSerice.sendValue(

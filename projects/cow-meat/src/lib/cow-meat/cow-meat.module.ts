@@ -9,6 +9,7 @@ import {
   SpinnerModule
 } from 'ngx-liburg-icon';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {ProfitabilityClockComponent} from './components/profitability-clock/profitability-clock.component';
 import {IsScrolledDirective} from './components/tab1/is-scrolled.directive';
 import {CowMeatComponent} from './cow-meat.component';
 import {CowRoutingModule} from './cow-routing.module';
@@ -18,7 +19,8 @@ import {CowRoutingModule} from './cow-routing.module';
     CowMeatComponent, IsScrolledDirective
   ],
   exports: [
-    IsScrolledDirective
+    IsScrolledDirective,
+    CowMeatComponent,
   ],
   imports: [
     CowRoutingModule,

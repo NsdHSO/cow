@@ -1,20 +1,17 @@
-import {
-  Component,
-  OnInit,
-} from "@angular/core";
-import {ChartOptions} from "chart.js";
+import {Component} from '@angular/core';
+import {ChartOptions} from 'chart.js';
 import {NgChartsModule} from 'ng2-charts';
 
 @Component({
-  standalone: true,
-  selector: 'cow-profitability-clock',
+  selector: 'cow-profitability',
   templateUrl: './profitability-clock.component.html',
   styleUrls: ['./profitability-clock.component.scss'],
   imports: [
     NgChartsModule
-  ]
+  ],
+  standalone: true
 })
-export class ProfitabilityClockComponent implements OnInit {
+export class ProfitabilityClockComponent  {
   // Pie
   public pieChartOptions : ChartOptions<"pie"> = {
     responsive: false,

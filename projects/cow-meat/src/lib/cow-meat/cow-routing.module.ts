@@ -60,7 +60,7 @@ const routes : Routes = [
             route: [
               {
                 name: 'Edit',
-                path: 'edit'
+                path: ''
               }
             ]
           }
@@ -69,7 +69,7 @@ const routes : Routes = [
           c => c.NewCowComponent),
         children: [
           {
-            path: 'edit',
+            path: '',
             loadComponent: () => import('./components/edit/edit.component').then(
               c => c.EditComponent)
           }
