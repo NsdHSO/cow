@@ -1,6 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {
   Component,
+  inject,
   OnDestroy,
   OnInit
 } from '@angular/core';
@@ -22,6 +23,7 @@ import {
   of,
   Subject,
   switchMap,
+  takeUntil,
   tap
 } from 'rxjs';
 import {
@@ -32,6 +34,7 @@ import {
 import {CowMeatService} from '../../util/service';
 import {DashboardService} from '../dashboard/util/dashboard.service';
 import {IsNotEmpty} from '../invoice/util';
+import {ProfitabilityClockService} from '../profitability-clock/util';
 
 const moment = moment_;
 
@@ -52,6 +55,8 @@ export class EditComponent implements OnInit, OnDestroy {
   cowForm : FormGroup;
   public stateCattle$ : Observable<IStateCattle[]> | undefined;
   private _destroyed$ : Subject<void> = new Subject<void>();
+  private _profitabilityService = inject(
+    ProfitabilityClockService);
 
   get Gender() : typeof Gender {
     return Gender;
@@ -97,12 +102,28 @@ export class EditComponent implements OnInit, OnDestroy {
       }),
       tap((cow : any) => {
         if(cow) {
-          cow.birth = moment(cow.birth)
+          cow.birth = moment(
+            new Date(cow.birth))
             .format();
+          cow.gender = cow.state === 'Early'
+            ? Gender.MALE
+            : Gender.FEMALE;
           this.cowForm.patchValue(cow);
         }
-      })
+      }),
+      takeUntil(this._destroyed$)
     );
+    this.cowForm.get('state')
+      ?.valueChanges
+      .pipe(takeUntil(this._destroyed$)
+      )
+      .subscribe(value => {
+          if(value !== 'Early') {
+            this.cowForm.get('gender')
+              ?.patchValue(Gender.FEMALE);
+          }
+        }
+      );
   }
 
   public sendData(event : any) {
@@ -111,12 +132,16 @@ export class EditComponent implements OnInit, OnDestroy {
         ?.patchValue(moment(
           this.cowForm.get(
             'birth')?.value)
-          .format('DD/MM/YYYY'));
+          .format('YYYY/DD/MM'));
       this._dashboardService.updatedCow(
         this.cowForm.value)
         .pipe(
           switchMap(
             data => this._cowMeatService.getCows())
+          , switchMap(data => {
+            this._profitabilityService.statisticData();
+            return of(data);
+          })
         )
         .subscribe();
       this._cowMeatService.sendDateCloseSidenav(

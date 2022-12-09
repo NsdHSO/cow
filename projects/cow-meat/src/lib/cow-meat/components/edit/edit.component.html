@@ -82,10 +82,10 @@
             >
           </mat-form-field>
           <mat-form-field appearance="fill">
-            <mat-label>Select</mat-label>
+            <mat-label>Gender</mat-label>
             <mat-select formControlName="gender">
               <mat-option [value]="Gender.FEMALE">Female</mat-option>
-              <mat-option [value]="Gender.MALE">Male</mat-option>
+              <mat-option [disabled]="cowForm.get('state')?.value !=='Early'"  [value]="Gender.MALE">Male</mat-option>
             </mat-select>
           </mat-form-field>
         </div>

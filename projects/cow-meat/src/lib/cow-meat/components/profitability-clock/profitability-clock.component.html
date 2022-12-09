@@ -1,8 +1,10 @@
-<canvas [datasets]="pieChartDatasets"
-        [labels]="pieChartLabels"
-        [legend]="pieChartLegend"
-        [options]="pieChartOptions"
-        [plugins]="pieChartPlugins"
-        [type]="'pie'"
-        baseChart>
-</canvas>
+<div *ngIf="flag">
+  <canvas [datasets]="pieChartDatasets"
+          [labels]="pieChartLabels"
+          [legend]="pieChartLegend"
+          [options]="pieChartOptions"
+          [plugins]="pieChartPlugins"
+          [type]="'pie'"
+          baseChart>
+  </canvas>
+</div>

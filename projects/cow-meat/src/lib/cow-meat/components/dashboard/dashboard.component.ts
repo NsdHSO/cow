@@ -1,6 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {
   Component,
+  inject,
   OnInit
 } from '@angular/core';
 import {
@@ -16,6 +17,8 @@ import {
 } from 'ngx-liburg';
 import {SpinnerService} from 'ngx-liburg-icon';
 import {
+  combineLatest,
+  of,
   Subject,
   switchMap,
   takeUntil
@@ -25,7 +28,8 @@ import {
   StateCattle
 } from '../../util/interfaces';
 import {CowMeatService} from '../../util/service';
-import { ProfitabilityClockComponent } from '../profitability-clock/profitability-clock.component';
+import {ProfitabilityClockComponent} from '../profitability-clock/profitability-clock.component';
+import {ProfitabilityClockService} from '../profitability-clock/util';
 import {DashboardService} from './util/dashboard.service';
 
 const moment = moment_;
@@ -43,6 +47,8 @@ const moment = moment_;
 export class DashboardComponent implements OnInit {
   public dataSourceCow : ICow[] | any;
   private _destroyed$ : Subject<void> = new Subject<void>();
+  private _profitabilityService = inject(
+    ProfitabilityClockService);
 
   constructor(
     private readonly _activateRouter : ActivatedRoute,
@@ -53,10 +59,18 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() : void {
-    this._cowMeatService.cowData$.pipe(
-      takeUntil(this._destroyed$))
-      .subscribe((data : ICow[]) => {
-        this.dataSourceCow = data.map(
+    combineLatest([
+      this._cowMeatService.cowData$,
+    ])
+      .pipe(
+        switchMap(data => {
+          this._profitabilityService.statisticData()
+          return of(data)
+        }) ,
+        takeUntil(this._destroyed$)
+      )
+      .subscribe((data : any) => {
+        this.dataSourceCow = data[0].map(
           (cow : ICow) => {
             this._spinerStateSerice.sendValue(
               true);
@@ -69,6 +83,7 @@ export class DashboardComponent implements OnInit {
               }
             } as DataSourceMaterialTable<any>;
           });
+
       });
   }
 
