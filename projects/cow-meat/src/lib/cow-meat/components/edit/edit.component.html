@@ -5,11 +5,12 @@
     <div class="w-100">
       <div class="d-flex gap-4 h-100 form-content__items">
         <div class="d-flex flex-column w-100 gap-3">
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" >
             <mat-label>Number From Ear</mat-label>
             <input formControlName="numberFromEar"
                    matInput
                    placeholder="212"
+                   [readonly]="false"
             >
           </mat-form-field>
           <mat-form-field class="example-full-width">

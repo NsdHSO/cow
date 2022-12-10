@@ -3,6 +3,7 @@
   border-radius: 0.25rem;
   margin-top: 1em;
   width: 100%;
+  z-index: 10;
 
   .cdk-program-focused:not(.mat-tab-disabled) {
     background: none;

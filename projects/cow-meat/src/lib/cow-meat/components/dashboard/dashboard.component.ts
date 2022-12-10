@@ -9,6 +9,7 @@ import {
   Params,
   Router
 } from '@angular/router';
+import * as moment from 'moment'
 import {
   DataSourceMaterialTable,
   IActionMaterialColumn,
@@ -31,7 +32,6 @@ import {ProfitabilityClockComponent} from '../profitability-clock/profitability-
 import {ProfitabilityClockService} from '../profitability-clock/util';
 import {DashboardService} from './util/dashboard.service';
 
-import moment from 'moment/moment';
 
 @Component({
   selector: 'lib-dashboard',

@@ -17,7 +17,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {ActivatedRoute} from '@angular/router';
-import moment from 'moment/moment';
+import * as moment from 'moment'
 import {
   Observable,
   of,
@@ -71,7 +71,7 @@ export class EditComponent implements OnInit, OnDestroy {
       {
         id: [''],
         numberFromEar: [
-          '', [
+          {value: '', disabled: true}, [
             Validators.required,
             IsNotEmpty
           ]

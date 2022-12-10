@@ -26,10 +26,6 @@ export class IsScrolledDirective implements OnInit{
     }
     else if(this._el.nativeElement.getBoundingClientRect().y > -700 && this._el.nativeElement.getBoundingClientRect().y < -400){
       this._el.nativeElement.style.background = "black"
-      this._el.nativeElement.style.color ='green'
-    }
-    else {
-      this._el.nativeElement.style.color ='white'
     }
   }
 }
