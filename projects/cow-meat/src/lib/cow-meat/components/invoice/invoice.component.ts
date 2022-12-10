@@ -92,6 +92,8 @@ export class InvoiceComponent implements OnInit, AfterViewInit, OnDestroy {
     invoice.endDate = this.invoiceForm.value.date.endDate;
     invoice.startDate = this.invoiceForm.value.date.startDate;
     this._invoiceService.addInvoice(invoice);
+    this.invoiceForm.reset()
+    this.invoiceForm.updateValueAndValidity()
   }
 
   public invoiceAction(delete1 : string) : void {

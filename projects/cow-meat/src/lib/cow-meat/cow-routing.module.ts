@@ -28,7 +28,7 @@ const routes : Routes = [
             route: [
               {
                 name: 'Home',
-                path: 'tab1'
+                path: './'
               },
               {
                 name: 'Home2',
@@ -41,7 +41,7 @@ const routes : Routes = [
           c => c.NewCowComponent),
         children: [
           {
-            path: 'tab1',
+            path: '',
             loadComponent: () => import('./components/tab1/new-entry.component').then(
               c => c.NewEntryComponent)
           },
@@ -60,7 +60,7 @@ const routes : Routes = [
             route: [
               {
                 name: 'Edit',
-                path: ''
+                path: './'
               }
             ]
           }
