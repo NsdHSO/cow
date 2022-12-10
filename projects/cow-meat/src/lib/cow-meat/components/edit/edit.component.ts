@@ -17,7 +17,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {ActivatedRoute} from '@angular/router';
-import * as moment from 'moment'
+import moment from 'moment/moment';
 import {
   Observable,
   of,
