@@ -7,8 +7,8 @@ import {
 import {CowMeatModule} from './cow-meat.module';
 
 @NgModule({})
-export class CoreCowModule {
-  constructor(@Optional() @SkipSelf() parent : CoreCowModule) {
+export class CoreMeatCowModule {
+  constructor(@Optional() @SkipSelf() parent : CoreMeatCowModule) {
     if(parent) {
       throw new Error('Parent {CORE' +
         ' Cow MODULE } is loaded');

@@ -17,7 +17,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {ActivatedRoute} from '@angular/router';
-import * as moment_ from 'moment';
+import * as moment from 'moment'
 import {
   Observable,
   of,
@@ -36,7 +36,6 @@ import {DashboardService} from '../dashboard/util/dashboard.service';
 import {IsNotEmpty} from '../invoice/util';
 import {ProfitabilityClockService} from '../profitability-clock/util';
 
-const moment = moment_;
 
 @Component({
   selector: 'lib-edit',

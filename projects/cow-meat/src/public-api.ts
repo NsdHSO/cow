@@ -4,7 +4,7 @@
 export *
   from './lib/cow-meat/cow-meat.component';
 export *
-  from './lib/cow-meat/core-cow.module';
+  from './lib/cow-meat/core-meat-cow.module';
 export * from
     './lib/cow-meat/cow-routing.module';
 export * from
